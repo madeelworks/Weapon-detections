@@ -4,7 +4,6 @@ export class Services extends Component {
   render() {
     return (
       <div>
-        {/* Existing section */}
         <section className="bg-black text-white py-20 px-10 bg-gradient-to-r from-[#482566] to-black">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-red-600">
@@ -51,7 +50,7 @@ export class Services extends Component {
           </div>
         </section>
 
-        {/* New section for service types */}
+        {/* section for service types */}
         <section className="bg-black text-white py-20 px-10 bg-gradient-to-r from-[#482566] to-black">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-red-600">
@@ -64,7 +63,7 @@ export class Services extends Component {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg text-center">
               <img
-                src="/src/assets/Service4.png" // Replace with your icon image
+                src="/src/assets/Service4.png" 
                 alt="Private Investigation Services"
                 className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
               />
@@ -76,7 +75,7 @@ export class Services extends Component {
             </div>
             <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg text-center">
               <img
-                src="/src/assets/Service5.png" // Replace with your icon image
+                src="/src/assets/Service5.png" 
                 alt="Personal Investigation Services"
                 className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
               />
@@ -88,7 +87,7 @@ export class Services extends Component {
             </div>
             <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg text-center">
               <img
-                src="/src/assets/Service6.png" // Replace with your icon image
+                src="/src/assets/Service6.png" 
                 alt="Armed Security Guard"
                 className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
               />
@@ -100,7 +99,7 @@ export class Services extends Component {
             </div>
             <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg text-center">
               <img
-                src="/src/assets/Service7.png" // Replace with your icon image
+                src="/src/assets/Service7.png" 
                 alt="Event Security"
                 className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
               />

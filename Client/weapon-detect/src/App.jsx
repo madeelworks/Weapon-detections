@@ -4,8 +4,11 @@ import Header from './components/Header/Header';  // Header component
 import Home from './components/Home/Home';  // Home page
 import Services from './components/services/services';
 import Contact from './components/Contact/contact';
+import About from './components/About/About';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
+  
   return (
     <Router>
       <div className="flex flex-col h-screen">
@@ -14,13 +17,16 @@ const App = () => {
 
         {/* Main content area */}
         <main className="flex-grow overflow-y-auto ">
+          
           <Routes>
             <Route path="/" element={<Home />} /> {/* Home page route */}
           
             <Route path="/Services" element={<Services />} /> {/* Contact page route */}
             <Route path="/contact" element={<Contact />} /> {/* Home page route */}
+            <Route path="/about" element={<About />} /> {/* Home page route */}
 
           </Routes>
+          <Footer />
         </main>
       </div>
     </Router>

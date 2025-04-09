@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white bg-gradient-to-r from-[#4F2A7F] to-black">
+    <footer className="bg-black text-white bg-gradient-to-r from-[#482566]   to-black mt-auto">
       <div className="mx-auto w-full max-w-screen-xl p-6 py-8">
         <div className="md:flex md:justify-between">
           {/* Logo Section */}
           <div className="flex items-center space-x-3 px-6 relative z-10">
-            {/* Update the src to use the local image in the 'assets' folder */}
             <img
-              src="/src/assets/logo.png"  // Use local image from the assets folder
+              src="/src/assets/logo.png"
               alt="Logo"
               className="w-36 h-auto"
             />
@@ -31,7 +30,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <a
-                    href="/#about"
+                    href="/about"
                     className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
                   >
                     About Us
@@ -39,7 +38,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <a
-                    href="/#about"
+                    href="/contact"
                     className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
                   >
                     Contact Us
@@ -47,7 +46,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <a
-                    href="/#about"
+                    href="/services"
                     className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
                   >
                     Our Services
@@ -62,7 +61,7 @@ export default function Footer() {
                 <h2 className="mb-6 text-sm font-semibold text-white uppercase">Help</h2>
                 <li className="mb-4">
                   <a
-                    href="/#home"
+                    href="/home"
                     className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
                   >
                     Support center
@@ -70,7 +69,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <a
-                    href="/#about"
+                    href="/about"
                     className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
                   >
                     How to start?
@@ -214,4 +213,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}

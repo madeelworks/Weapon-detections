@@ -4,7 +4,7 @@ export class Services extends Component {
   render() {
     return (
       <div>
-        <section className="bg-black text-white py-20 px-10 bg-gradient-to-r from-[#482566] to-black">
+        <section className="bg-black text-white py-20 px-10 bg-gradient-to-r from-[#4F2A7F] to-black">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-red-600">
               How We Provide <span className="text-white">Our Services</span>
@@ -51,7 +51,7 @@ export class Services extends Component {
         </section>
 
         {/* section for service types */}
-        <section className="bg-black text-white py-20 px-10 bg-gradient-to-r from-[#482566] to-black">
+        <section className="bg-black text-white py-20 px-10 bg-gradient-to-r from-[#4F2A7F] to-black">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-red-600">
               Take A Look At <span className="text-white">Services We Provide</span>

@@ -20,7 +20,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-r from-[#482566] to-black py-28">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-r from-[#4F2A7F] to-black py-28">
       <div className="w-full max-w-5xl flex flex-col md:flex-row bg-gradient-to-r from-[#482566] to-black rounded-lg shadow-lg p-6 md:p-10 gap-8">
         {/* Left Section - Get in Touch */}
         <div className="w-full md:w-1/3 bg-gradient-to-r from-[#482566] to-black rounded-lg p-6 shadow-md">
@@ -114,7 +114,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-white text-black  "
                 placeholder="Your Name"
                 required
               />
@@ -129,7 +129,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-white text-black  "
                 placeholder="Your Email"
                 required
               />
@@ -144,7 +144,7 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 rows="5"
-                className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-white text-black  "
                 placeholder="Your Message"
                 required
               ></textarea>

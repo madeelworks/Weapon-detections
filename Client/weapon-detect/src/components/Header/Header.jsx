@@ -3,13 +3,11 @@ import React from 'react';
 const Header = () => {
   return (
     <header className="relative flex justify-between items-center p-4 bg-gradient-to-r from-[#4F2A7F] to-black">
-      {/* Gradient background for header */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#482566]   to-black opacity-60"></div>
 
       <div className="flex items-center space-x-3 px-6 relative z-10">
-        {/* Update the src to use the local image in the 'assets' folder */}
         <img
-          src="/src/assets/logo.png"  // Use local image from the assets folder
+          src="/src/assets/logo.png"  
           alt="Logo"
           className="w-16 h-auto"
         />

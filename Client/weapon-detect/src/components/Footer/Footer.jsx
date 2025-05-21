@@ -100,7 +100,7 @@ export default function Footer() {
               <ul className="text-white-300 font-medium">
                 <li className="mb-4">
                   <a
-                    href="https://www.linkedin.com/in/muhammad-adeel-953245257/?originalSubdomain=pk"
+                    href="https://www.instagram.com/adeel._.dev/?igsh=MTFlMm05NWlkOWVycQ%3D%3D#"
                     className="hover:text-blue-400 transition duration-300"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -134,7 +134,7 @@ export default function Footer() {
 
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
             <a
-              href="https://wa.me/923987654321"
+              href="https://wa.me/923195532126"
               className="text-gray-300 hover:text-blue-400 transition duration-300"
               target="_blank"
               rel="noopener noreferrer"
@@ -152,7 +152,7 @@ export default function Footer() {
               <span className="sr-only">whatsapp</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/muhammad-adeel-953245257/?originalSubdomain=pk"
+              href="https://www.instagram.com/adeel._.dev/?igsh=MTFlMm05NWlkOWVycQ%3D%3D#"
               className="text-gray-300 hover:text-blue-400 transition duration-300"
               target="_blank"
               rel="noopener noreferrer"
@@ -170,13 +170,15 @@ export default function Footer() {
                   clipRule="evenodd"
                 />
               </svg>
-              <span className="sr-only">Threads</span>
+              <span className="sr-only">Instagram</span>
             </a>
             <a
-              href="mailto:adeel.tech@gmail.com"
+              target="_blank" 
+              rel="nofollow"
+              href="mailto:muhammad.adeel@genesisengr.com"
               className="text-gray-300 hover:text-blue-400 transition duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
+              // target="_blank"
+              // rel="noopener noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -188,10 +190,9 @@ export default function Footer() {
               >
                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
               </svg>
-              <span className="sr-only">E-mail</span>
             </a>
             <a
-              href="https://www.google.com/maps?q=Islamabad+Sports+Complex,+Islamabad+Capital+Territory"
+              href="https://maps.app.goo.gl/PwxahMQcZxNpsrd58"
               className="text-gray-300 hover:text-blue-400 transition duration-300"
               target="_blank"
               rel="noopener noreferrer"

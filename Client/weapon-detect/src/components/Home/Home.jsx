@@ -8,10 +8,10 @@ const Home = () => {
           
           {/* Right Section: Text */}
           <div className="w-full md:w-7/12 lg:w-7/12 text-center md:text-left">
-            <h1 className="text-5xl font-bold mb-4 text-white">Private Investigation Services</h1>
+            <h1 className="text-5xl font-bold mb-4 text-white">Weapon Detection System</h1>
 
             <p className="mt-6 text-white text-base ">
-              We are experts in helping you find a solution to your problem. Our team includes <br /> male & female investigators possessing many years of experience. There are very <br /> few situations that we haven’t seen before, and more importantly, whatever your <br /> circumstances we are here to understand your situation.
+              AI-powered solution for weapon detection in real time. So that you could be proactive, rather than reactive when second matter. <br /> male & female investigators possessing many years of experience. There are very <br /> few situations that we haven’t seen before, and more importantly, whatever your <br /> circumstances we are here to understand your situation.
             </p>
 
             <p className="mt-4 text-white text-base ">

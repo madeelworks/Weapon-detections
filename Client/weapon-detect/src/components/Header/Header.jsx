@@ -45,6 +45,15 @@ const Header = () => {
               Home
             </a>
           </li>
+             <li>
+            <a
+              href="/about"
+              className="block text-white hover:text-red-500 py-2 md:py-0"
+              onClick={() => setIsOpen(false)}
+            >
+              About Us
+            </a>
+          </li>
           <li>
             <a
               href="/services"
@@ -54,15 +63,7 @@ const Header = () => {
               Our Services
             </a>
           </li>
-          <li>
-            <a
-              href="/about"
-              className="block text-white hover:text-red-500 py-2 md:py-0"
-              onClick={() => setIsOpen(false)}
-            >
-              About Us
-            </a>
-          </li>
+       
           <li>
             <a
               href="/contact"
@@ -74,20 +75,20 @@ const Header = () => {
           </li>
           <li>
             <a
-              href="/blogs"
-              className="block text-white hover:text-red-500 py-2 md:py-0"
-              onClick={() => setIsOpen(false)}
-            >
-              Blogs
-            </a>
-          </li>
-          <li>
-            <a
               href="/Login"
               className="block text-white hover:text-red-500 py-2 md:py-0"
               onClick={() => setIsOpen(false)}
             >
               Login
+            </a>
+          </li>
+            <li>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en"
+              className="inline-block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-lg font-semibold transition-colors duration-300"
+              onClick={() => setIsOpen(false)}
+            >
+              Download App
             </a>
           </li>
         </ul>

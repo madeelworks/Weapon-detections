@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => { // Accept setIsLoggedIn as a prop
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -19,19 +19,24 @@ const Login = () => {
     }
 
     // Simulate an API call
-    if (email === 'test@example.com' && password === 'password') {
-      alert('Login successful!');
+    if (email === 'admin@example.com' && password === 'adminpassword') {
+      setIsLoggedIn(true); // Update login status to true
       setErrorMessage('');
-      // Navigate to another page (for example, dashboard) after successful login
-      navigate('/dashboard'); // Adjust this route as needed
+      alert('Admin login successful!');
+      navigate('/dashboard'); // Navigate to admin dashboard after successful login
+    } else if (email === 'user@example.com' && password === 'userpassword') {
+      setIsLoggedIn(true); // Update login status to true
+      setErrorMessage('');
+      alert('User login successful!');
+      navigate('/user-dashboard'); // Navigate to user dashboard after successful login
     } else {
       setErrorMessage('Invalid email or password.');
     }
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#4F2A7F] to-black min-h-screen flex justify-center items-center"> {/* Background color updated */}
-      <div className="max-w-3xl mx-auto mt-4 bg-gradient-to-r from-[#482566] to-black p-12 rounded-lg shadow-lg"> {/* Increased form size */}
+    <div className="bg-white min-h-screen flex justify-center items-center">
+      <div className="w-[500px] mx-auto mt-4 bg-gradient-to-r from-[#482566] to-black p-12 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold mb-6 text-center text-white">Login</h2>
 
         <form onSubmit={handleSubmit}>

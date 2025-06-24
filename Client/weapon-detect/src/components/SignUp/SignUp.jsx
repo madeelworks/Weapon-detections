@@ -33,8 +33,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#4F2A7F] to-black min-h-screen flex justify-center items-center"> {/* Background color applied to page */}
-      <div className="max-w-4xl mx-auto mt-12 bg-gradient-to-r from-[#482566] to-black p-12 rounded-lg shadow-lg"> {/* Increased form width */}
+    <div className="bg-white min-h-screen flex justify-center items-center"> {/* Background color applied to page */}
+      <div className="w-[500px] mx-auto mt-12 bg-gradient-to-r from-[#482566] to-black p-12 rounded-lg shadow-lg"> {/* Increased form width */}
         <h2 className="text-2xl font-semibold mb-6 text-center text-white">Sign Up</h2>
 
         <form onSubmit={handleSubmit}>

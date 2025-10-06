@@ -2,10 +2,9 @@ import React, { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
- 
 
   return (
-    <header className="relative flex justify-between items-center p-4 bg-gradient-to-r from-[#4F2A7F] to-black">
+    <header className="fixed top-0 left-0 w-full flex justify-between items-center p-4 bg-gradient-to-r from-[#4F2A7F] to-black z-50">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#482566] to-black opacity-60"></div>
 
       <div className="flex items-center space-x-3 px-6 relative z-10">
@@ -16,7 +15,7 @@ const Header = () => {
         />
       </div>
 
-      {/* Hamburger button - shown on small screens */}
+      {/* Hamburger button - shown on all small screens and tablets */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative z-20 block md:hidden text-white focus:outline-none"
@@ -35,7 +34,7 @@ const Header = () => {
         `}
         style={{ zIndex: 10 }}
       >
-        <ul className="flex flex-col md:flex-row md:space-x-8 p-4 md:p-0">
+        <ul className="flex flex-col md:flex-row md:space-x-8 p-4 md:p-0 md:justify-center md:items-center md:w-full text-center font-bold text-xl">
           <li>
             <a
               href="/"
@@ -45,31 +44,31 @@ const Header = () => {
               Home
             </a>
           </li>
-             <li>
+          <li>
             <a
-              href="/about"
+              href="#about"
               className="block text-white hover:text-red-500 py-2 md:py-0"
               onClick={() => setIsOpen(false)}
             >
-              About Us
+              About
             </a>
           </li>
           <li>
             <a
-              href="/services"
+              href="#services"
               className="block text-white hover:text-red-500 py-2 md:py-0"
               onClick={() => setIsOpen(false)}
             >
-              Our Services
+              Services
             </a>
           </li>
           <li>
             <a
-              href="/contact"
+              href="#contact"
               className="block text-white hover:text-red-500 py-2 md:py-0"
               onClick={() => setIsOpen(false)}
             >
-              Contact Us
+              Contact
             </a>
           </li>
           <li>
@@ -81,7 +80,7 @@ const Header = () => {
               Login
             </a>
           </li>
-            <li>
+          <li>
             <a
               href="https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en"
               className="inline-block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-lg font-semibold transition-colors duration-300"

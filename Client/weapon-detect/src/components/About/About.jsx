@@ -9,7 +9,7 @@ export default function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
           {/* Left Section: Image */}
-          <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center">
+          <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center mt-6">
             <video
               autoPlay
               loop
@@ -55,41 +55,48 @@ export default function About() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-20">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
-          {/* Left Section: Image */}
-          
-          <div className="w-full md:w-7/12 lg:w-7/12 text-center md:text-left">
-            <h2 className="text-4xl font-bold mb-4 text-red-600">
-              We Make People <span className="text-red-600">Feel Safe</span>
-            </h2>
-            <p className="mt-6 text-black text-base ">
-              We are at the cutting edge of security technology, providing a state-of-the-art weapon detection system that offers real-time alerts to identify potential threats. Our advanced AI-driven solution continuously scans video feeds to detect weapons, allowing security teams to respond instantly to prevent harm before it happens.
-            </p>
-            <p className="mt-4  text-black">
-              In a world where safety is paramount, our system is designed to act quickly and accurately, ensuring that security personnel are always alerted to threats in time. From busy public spaces and corporate offices to transportation terminals and critical infrastructure, our technology enables proactive monitoring and early detection of potential dangers, safeguarding both people and property.
-By providing continuous, real-time surveillance with immediate alerts, we help organizations stay ahead of potential security risks, ensuring a safer environment for all.
-            </p>
 
-            <div className="mt-6">
-              <a
-                href="/contact"
-                className="bg-red-500 text-white px-8 py-3 rounded-full text-xl hover:bg-red-600"
-              >
-                Contact Us
-              </a>
-            </div>
-          </div>
-          <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center">
-          <img
-            src="/src/assets/peopless.png" // Replace with your actual image path
-            alt="About Us"
-            className="w-full object-cover rounded-lg"
-          />
-          </div>
-        </div>
+
+
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-20">
+  <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+    {/* Left Section: Text */}
+    <div className="w-full md:w-7/12 lg:w-7/12 text-center md:text-left order-2 md:order-1">
+      <h2 className="text-4xl font-bold mb-4 text-red-600">
+        We Make People <span className="text-red-600">Feel Safe</span>
+      </h2>
+      <p className="mt-6 text-black text-base">
+        We are at the cutting edge of security technology, providing a state-of-the-art weapon detection system that offers real-time alerts to identify potential threats. Our advanced AI-driven solution continuously scans video feeds to detect weapons, allowing security teams to respond instantly to prevent harm before it happens.
+      </p>
+      <p className="mt-4 text-black">
+        In a world where safety is paramount, our system is designed to act quickly and accurately, ensuring that security personnel are always alerted to threats in time. From busy public spaces and corporate offices to transportation terminals and critical infrastructure, our technology enables proactive monitoring and early detection of potential dangers, safeguarding both people and property.
+        By providing continuous, real-time surveillance with immediate alerts, we help organizations stay ahead of potential security risks, ensuring a safer environment for all.
+      </p>
+
+      <div className="mt-6">
+        <a
+          href="/contact"
+          className="bg-red-500 text-white px-8 py-3 rounded-full text-xl hover:bg-red-600"
+        >
+          Contact Us
+        </a>
       </div>
     </div>
+
+    {/* Right Section: Image */}
+    <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center order-1 md:order-2">
+      <img
+        src="/src/assets/peopless.png" // Replace with your actual image path
+        alt="About Us"
+        className="w-full object-cover rounded-lg"
+      />
+    </div>
+  </div>
+</div>
+    </div>
+
+
+
 
     //     <div>
     //       {/* First Section */}

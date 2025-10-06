@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook for navigation
+import axios from 'axios';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -8,33 +9,39 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate(); // Initialize navigate function
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+    // Frontend validation before sending the request
     if (!email || !password || !confirmPassword) {
       setErrorMessage('All fields are required.');
-      return;
+      return; // Don't proceed if any field is missing
     }
 
     if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match.');
-      return;
+      return; // Don't proceed if passwords don't match
     }
 
-    // Simulate an API call
-    alert('Sign-Up successful!');
+    // Clear any existing error messages
     setErrorMessage('');
-    // Navigate to login page or another page after successful sign-up
-    navigate('/login'); // You can change this to the page you want to navigate after successful sign-up
+
+    try {
+      // Make the POST request to the backend to register the user
+      const result = await axios.post('http://localhost:3001/auth/register', { email, password });
+      console.log(result);
+      
+      // On success, navigate to login page
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
+      setErrorMessage('An error occurred. Please try again later.');
+    }
   };
 
   return (
-    <div className="bg-white min-h-screen flex justify-center items-center"> {/* Background color applied to page */}
-      <div className="w-[500px] mx-auto mt-12 bg-gradient-to-r from-[#482566] to-black p-12 rounded-lg shadow-lg"> {/* Increased form width */}
+    <div className="bg-white min-h-screen flex justify-center items-center">
+      <div className="w-[500px] mx-auto mt-12 bg-gradient-to-r from-[#482566] to-black p-12 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold mb-6 text-center text-white">Sign Up</h2>
 
         <form onSubmit={handleSubmit}>
@@ -45,7 +52,7 @@ const SignUp = () => {
               id="email"
               className="w-full p-4 mt-2 border border-gray-300 rounded-md"
               value={email}
-              onChange={handleEmailChange}
+              onChange={(e) => setEmail(e.target.value)} // Directly use setEmail
               required
             />
           </div>
@@ -57,7 +64,7 @@ const SignUp = () => {
               id="password"
               className="w-full p-4 mt-2 border border-gray-300 rounded-md"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(e) => setPassword(e.target.value)} // Directly use setPassword
               required
             />
           </div>
@@ -69,7 +76,7 @@ const SignUp = () => {
               id="confirmPassword"
               className="w-full p-4 mt-2 border border-gray-300 rounded-md"
               value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
+              onChange={(e) => setConfirmPassword(e.target.value)} // Directly use setConfirmPassword
               required
             />
           </div>

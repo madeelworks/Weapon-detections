@@ -7,7 +7,7 @@ export class Services extends Component {
         <section className=" text-black py-20 px-10 ">
          
 
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div id="services" className=" container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
               {/* Left Section: Image */}
               <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center">
@@ -58,49 +58,51 @@ export class Services extends Component {
 
 
 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-28">
-            <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
-              {/* Left Section: Image */}
-              
+  <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+    {/* Left Section: Text */}
+    <div className="w-full md:w-7/12 lg:w-7/12 text-center md:text-left order-2 md:order-1">
+      <h2 className="text-4xl font-bold text-red-600">
+        Get to Know How it Works
+      </h2>
+      <p className="mt-6 text-black text-base">
+        Our system effectively monitors and detects weapons within the camera's field of view, even in dynamic environments with moving backgrounds, high-traffic areas, and varying conditions. It is fully compatible with mobile and web.
+      </p>
 
-              {/* Right Section: Text */}
-              <div className="w-full md:w-7/12 lg:w-7/12 text-center md:text-left ">
-                <h2 className="text-4xl font-bold text-red-600">
-              Get to Know How it Works
-            </h2>
-                <p className="mt-6 text-black text-base ">
-                  Our system effectively monitors and detects weapons within the camera's field of view, even in dynamic environments with moving backgrounds, high-traffic areas, and varying conditions. It is fully compatible with  mobile, and web.
-                </p>
+      <p className="mt-6 text-black text-base">
+        Our system enables accurate weapon detection over long distances, fully leveraging the capabilities of ultra-high-resolution cameras. Our advanced, patented video-optimized object detection algorithm ensures extremely low false-positive rates, even in busy environments like production areas.
+      </p>
 
-                <p className="mt-6 text-black text-base ">
-                 our system enables accurate weapon detection over long distances, fully leveraging the capabilities of ultra-high-resolution cameras. Our advanced, patented video-optimized object detection algorithm ensures extremely low false-positive rates, even in busy environments like production areas.
-                </p>
+      <p className="mt-6 text-black text-base">
+        Our weapon detection technology can be easily integrated into existing video surveillance setups through one- and two-way I/O protocols, ensuring smooth interoperability with current security systems.
+      </p>
 
-                <p className="mt-6 text-black text-base ">
-               Our weapon detection technology can be easily integrated into existing video surveillance setups through one- and two-way I/O protocols, ensuring smooth interoperability with current security systems.
-                </p>
+      <p className="mt-6 text-black text-base">
+        When a weapon is detected, an immediate alert is generated, including a detection frame and a short video clip. This alert is displayed on the native dashboard and integrated monitoring systems. Additionally, the mobile app sends real-time notifications, complete with all relevant information for quick action.
+      </p>
 
-                <p className="mt-6 text-black text-base ">
-              When a weapon is detected, an immediate alert is generated, including a detection frame and a short video clip. This alert is displayed on the native dashboard and integrated monitoring systems. Additionally, the mobile app sends real-time notifications, complete with all relevant information for quick action.
-                </p>
-                
-                <div className="mt-6">
-                  <a
-                    href="/contact"
-                    className="bg-red-500 text-white px-8 py-3 rounded-full text-xl hover:bg-red-600"
-                  >
-                    Contact Us
-                  </a>
-                </div>
-              </div>
-              <div className="w-full md:w-8/12 lg:w-8/12 flex justify-center">
-                <img
-                  src="/src/assets/work1.jpg"
-                  alt="React development"
-                  className="object-contain rounded-xl max-w-xl md:max-w-2xl lg:max-w-2xl"
-                />
-              </div>
-            </div>
-          </div>
+      <div className="mt-6">
+        <a
+          href="/contact"
+          className="bg-red-500 text-white px-8 py-3 rounded-full text-xl hover:bg-red-600"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+
+    {/* Right Section: Image */}
+    <div className="w-full md:w-8/12 lg:w-8/12 flex justify-center order-1 md:order-2 mt-6">
+      <img
+        src="/src/assets/work1.jpg"
+        alt="React development"
+        className="object-contain rounded-xl max-w-xl md:max-w-2xl lg:max-w-2xl"
+      />
+    </div>
+  </div>
+</div>
+
+
+         
           {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg">
               <img

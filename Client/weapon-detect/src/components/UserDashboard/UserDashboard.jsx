@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-export default function App() {
+const UserDashboard = ({ handleLogout }) => {
+
   // State management
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedCamera, setSelectedCamera] = useState(null);
@@ -11,8 +12,7 @@ export default function App() {
       id: 1,
       title: "Camera 1",
       thumbnail: "https://via.placeholder.com/400x300?text=Camera+1",
-      streamUrl: "/src/assets/detection.mp41", 
-      // Replace with actual camera stream URL
+      streamUrl: "/src/assets/detection.mp4", 
     },
     {
       id: 2,
@@ -41,7 +41,7 @@ export default function App() {
 
   return (
     <div
-      className=" text-gray-800"
+      className="text-gray-800"
       style={{
         backgroundImage: 'url(/src/assets/dashboard.jpg)', // Path to your background image
         backgroundSize: 'cover',
@@ -52,11 +52,11 @@ export default function App() {
       <div className="flex h-screen overflow-hidden">
         {/* Sidebar */}
         <aside
-          className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-gradient-to-r from-[#482566] to-black border-r border-gray-200 shadow-sm transition-all duration-300 ease-in-out mt-20`}
+          className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-gradient-to-r from-[#482566] to-black border-r border-gray-200 shadow-sm transition-all duration-300 ease-in-out`}
         >
           <div className="flex flex-col h-full">
             {/* Logo */}
-            <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
+            <div className="flex items-center justify-between h-16 px-4 p-14 border-b border-gray-100">
               {sidebarOpen && (
                 <div className="flex items-center">
                   <img
@@ -64,12 +64,13 @@ export default function App() {
                     alt="Logo"
                     className="w-12 h-auto"
                   />
-                  <span className="ml-2 text-white font-bold">Recon Eye</span>
+                  <span className="ml-2 text-white font-bold text-3xl">Recon Eye</span>
                 </div>
               )}
+
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-gray-500 hover:text-blue-600"
+                className="text-gray-200 hover:text-red-500 mt-2"
               >
                 {sidebarOpen ? (
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +85,7 @@ export default function App() {
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
+            <nav className="flex-1 p-2 space-y-1 overflow-y-auto mt-4">
               {[{
                 label: 'Dashboard',
                 icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
@@ -125,17 +126,25 @@ export default function App() {
                   <span>{item.label}</span>
                 </a>
               ))}
+
+              {/* Logout Button */}
+              <button
+                onClick={handleLogout} // Call handleLogout directly
+                className="text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600"
+              >
+                Logout
+              </button>
             </nav>
           </div>
         </aside>
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <header className="bg-gradient-to-r from-[#482566] to-blacke border-b border-gray-200 h-16 flex items-center justify-between mt-20 px-4 shadow-sm">
+          <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between  px-18 p-14 shadow-sm text-3xl">
             <span className="ml-2 text-white font-bold">Welcome to User Dashboard</span>
             <div className="flex-1"></div>
             <div className="flex items-center space-x-4">
-              <div className="text-white text-sm">{new Date().toLocaleDateString()}</div>
+              <div className="text-white text-2xl">{new Date().toLocaleDateString()}</div>
             </div>
           </header>
 
@@ -147,10 +156,9 @@ export default function App() {
                 <div
                   key={camera.id}
                   className="bg-purple-900 rounded-lg p-4 border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                  onClick={() => handleCameraClick(camera)}
-                   // Handle camera click
+                  onClick={() => handleCameraClick(camera)} // Handle camera click
                 >
-                   <img
+                  <img
                     src="/src/assets/Service4.png" 
                     alt="Private Investigation Services"
                     className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
@@ -175,8 +183,7 @@ export default function App() {
             {selectedCamera && (
               <div
                 className="fixed inset-0 z-50 overflow-hidden bg-black bg-opacity-50 flex justify-center items-center"
-                onClick={() => setSelectedCamera(null)} 
-                // Close modal on outside click
+                onClick={() => setSelectedCamera(null)} // Close modal on outside click
               >
                 <div className="bg-gradient-to-r from-[#482566] to-black p-6 rounded-lg shadow-lg">
                   <video
@@ -198,4 +205,6 @@ export default function App() {
       </div>
     </div>
   );
-}
+};
+
+export default UserDashboard;

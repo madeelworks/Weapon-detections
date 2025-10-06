@@ -1,37 +1,40 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 const Login = ({ setIsLoggedIn }) => { // Accept setIsLoggedIn as a prop
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // Error message state
   const navigate = useNavigate(); // Initialize useNavigate hook
-
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Validate if fields are empty
     if (!email || !password) {
-      setErrorMessage('Both fields are required.');
+      setErrorMessage("Both fields are required");
       return;
     }
 
-    // Simulate an API call
-    if (email === 'admin@example.com' && password === 'adminpassword') {
-      setIsLoggedIn(true); // Update login status to true
-      setErrorMessage('');
-      alert('Admin login successful!');
-      navigate('/dashboard'); // Navigate to admin dashboard after successful login
-    } else if (email === 'user@example.com' && password === 'userpassword') {
-      setIsLoggedIn(true); // Update login status to true
-      setErrorMessage('');
-      alert('User login successful!');
-      navigate('/user-dashboard'); // Navigate to user dashboard after successful login
-    } else {
-      setErrorMessage('Invalid email or password.');
-    }
+    // Axios request to send login data
+    axios.post('http://localhost:3001/auth/login', { email, password })
+      .then(result => {
+        console.log("result",result);
+        // If login is successful, navigate to dashboard
+        if (result.data.message === "success") {
+          console.log("result if called")
+          setIsLoggedIn(true); // Set the login state to true
+          navigate('/UserDashboard'); // Navigate to the dashboard page
+        } else {
+            console.log("result Else  called")
+          setErrorMessage("Invalid credentials, please try again.");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setErrorMessage("Something went wrong, please try again later.");
+      });
   };
 
   return (
@@ -47,7 +50,7 @@ const Login = ({ setIsLoggedIn }) => { // Accept setIsLoggedIn as a prop
               id="email"
               className="w-full p-4 mt-2 border border-gray-300 rounded-md"
               value={email}
-              onChange={handleEmailChange}
+              onChange={(e) => setEmail(e.target.value)} // Directly update email
               required
             />
           </div>
@@ -59,11 +62,12 @@ const Login = ({ setIsLoggedIn }) => { // Accept setIsLoggedIn as a prop
               id="password"
               className="w-full p-4 mt-2 border border-gray-300 rounded-md"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(e) => setPassword(e.target.value)} // Directly update password
               required
             />
           </div>
 
+          {/* Display error message if any */}
           {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
 
           <button

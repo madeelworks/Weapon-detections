@@ -8,8 +8,16 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // Frontend URL (adjust as needed)
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,  // Allow cookies (including admin token)
+  })
+);
 app.use(cookieParser());
+
 
 // MongoDB connection
 mongoose.connect('mongodb://localhost:27017/Users')
@@ -17,10 +25,7 @@ mongoose.connect('mongodb://localhost:27017/Users')
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Use the routes for /auth
-app.use('/auth', authRoutes);
-
-// Use the routes for admin/auth
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);  // Register authentication routes
 
 // Start the server
 app.listen(3001, () => {

@@ -2,10 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
-const Login = ({ setIsLoggedIn }) => { // Accept setIsLoggedIn as a prop
+const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Error message state
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = (e) => {
@@ -20,14 +20,15 @@ const Login = ({ setIsLoggedIn }) => { // Accept setIsLoggedIn as a prop
     // Axios request to send login data
     axios.post('http://localhost:3001/auth/login', { email, password })
       .then(result => {
-        console.log("result",result);
+        console.log("result", result);
         // If login is successful, navigate to dashboard
-        if (result.data.message === "success") {
-          console.log("result if called")
+        if (result.data.message === "Login successful") {
           setIsLoggedIn(true); // Set the login state to true
+          console.log("User logged in successfully");
+
+          // Use navigate to redirect to the dashboard
           navigate('/UserDashboard'); // Navigate to the dashboard page
         } else {
-            console.log("result Else  called")
           setErrorMessage("Invalid credentials, please try again.");
         }
       })

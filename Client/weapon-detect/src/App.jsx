@@ -13,6 +13,7 @@ import AdminDashboard from "./components/AdminDashboard/Dashboard";// Admin dash
 import UserDashboard from "./components/UserDashboard/UserDashboard"; // User dashboard
 import AdminLogin from "./components/AdminLogin/AdminLogin";
 import Users from "./components/Users/Users";
+import Alerts from "./components/Alerts/Alerts";
 
 // Wrapper component to use useLocation
 const AppWrapper = () => {
@@ -24,7 +25,7 @@ const AppWrapper = () => {
   const handleAdminLogout = () => setIsAdminLoggedIn(false);
 
   // Determine if header/footer should be hidden (for both dashboards)
-  const hideHeaderFooter = location.pathname === "/dashboard" || location.pathname === "/UserDashboard";
+const hideHeaderFooter = location.pathname.startsWith("/dashboard") || location.pathname.startsWith("/UserDashboard");
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -61,8 +62,8 @@ const AppWrapper = () => {
             path="/dashboard"
             element={isAdminLoggedIn ? <Dashboard handleLogout={handleAdminLogout} /> : <Navigate to="/admin/login" replace />}
           >
-            {/* Nested Routes under /Dashboard */}
             <Route path="/dashboard/users" element={<Users />} />
+            <Route path="/dashboard/alerts" element={<Alerts />} />
             {/* Default Route */}
             <Route path="/dashboard" element={<AdminDashboard />} />
           </Route>

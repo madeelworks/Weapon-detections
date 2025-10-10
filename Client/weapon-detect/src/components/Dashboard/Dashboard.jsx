@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Addusers } from "../shared/models/AddUserModel"; // Import the Addusers component
+// import { Addusers } from "../../utility/Models/UserModel"; // Import the Addusers component
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -72,7 +72,7 @@ const Dashboard = ({ handleLogout }) => {
     },
     {
       title: "Alerts",
-      URL: "/Alerts",
+      URL: "/dashboard/alerts",
       icon: (
         <svg
           className="w-5 h-5"
@@ -187,9 +187,21 @@ const Dashboard = ({ handleLogout }) => {
           </div>
         </aside>
 
+  {/* Main Content */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between  px-18 p-14 shadow-sm text-3xl">
+            <span className="ml-2 text-white font-bold">Welcome to User Dashboard</span>
+            <div className="flex-1"></div>
+            <div className="flex items-center space-x-4">
+              <div className="text-white text-2xl">{new Date().toLocaleDateString()}</div>
+            </div>
+          </header> */}
+
+
         <Outlet />
       </div>
     </div>
+     </div>
   );
 };
 

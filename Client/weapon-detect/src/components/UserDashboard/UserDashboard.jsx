@@ -4,10 +4,12 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+
 const UserDashboard = ({ handleLogout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
+  const [activeNav, setActiveNav] = useState("/UserDashboard/UserDash"); // State to track active nav
 
   // Simulated Camera Data
   const cameras = [
@@ -55,6 +57,11 @@ const UserDashboard = ({ handleLogout }) => {
     {
       title: "Edit Profile",
       URL: "/UserDashboard/EditProfile",
+      icon: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-camera-video-fill" viewBox="0 0 16 16"><path fillRule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2z"/></svg>
+    },
+    {
+      title: "View Live Feed",
+      URL: "/UserDashboard/Streaming",
       icon: (
         <svg
           className="w-5 h-5"
@@ -72,8 +79,65 @@ const UserDashboard = ({ handleLogout }) => {
       ),
     },
     {
-      title: "View Live Feed",
-      URL: "/UserDashboard/Streaming",
+      title: "Alerts",
+      URL: "/UserDashboard/alerts",
+      icon: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "Acknowledge Threats",
+      URL: "/UserDashboard/acknowledge",
+      icon: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "View History",
+      URL: "/UserDashboard/history",
+      icon: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "Report Suspicious Activity",
+      URL: "/UserDashboard/report",
       icon: (
         <svg
           className="w-5 h-5"
@@ -163,14 +227,15 @@ const UserDashboard = ({ handleLogout }) => {
             {/* Navigation */}
             <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
               {navs.map((nav, index) => (
-                <Link
+                     <Link
                   key={index}
                   to={nav.URL}
                   className={`flex items-center p-2 rounded-lg text-sm ${
-                    index === 0
+                    nav.URL === activeNav
                       ? "bg-blue-50 text-blue-600"
                       : "text-white hover:bg-gray-50 hover:text-blue-600"
                   }`}
+                  onClick={() => setActiveNav(nav.URL)} // Set the active nav
                 >
                   <div className="mr-2">{nav.icon}</div>
                   <div className="mr-2">{nav.title}</div>

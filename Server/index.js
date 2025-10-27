@@ -19,7 +19,8 @@ app.use(
   })
 );
 
-mongoose.connect('mongodb://localhost:27017/Users', { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect('mongodb://localhost:27017/Users', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://adeeltechpro_db_user:VDUv4DZ6w4tcIMjs@cluster0.vbbo82a.mongodb.net/?appName=Cluster0', { useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 

@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const UsersModel = require('../models/Users');
+const { loginUser } = require('../services/auth');
 
 const router = express.Router();
 
@@ -64,25 +65,12 @@ router.post('/admin/add-user', async (req, res) => {
 // User login (for all users, not just admins)
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
-
   try {
-    const user = await UsersModel.findOne({ email });
-
-    if (!user) {
-      return res.status(404).json({ error: 'No user found with this email' });
-    }
-
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
-    if (!isPasswordCorrect) {
-      return res.status(401).json({ error: 'Incorrect password' });
-    }
-
-    const token = jwt.sign({ userId: user._id, email: user.email }, JWT_SECRET_KEY, { expiresIn: '1h' });
-
-    // Send token as part of the response
-    res.status(200).json({ message: 'Login successful', token });
+    console.log("Did we reach this one?")
+    const token = await loginUser(email, password, res);
+    res.status(200).json({ message: 'success', token });
   } catch (err) {
-    res.status(500).json({ error: 'Error logging in: ' + err.message });
+    res.status(500).json({ error: err.message });
   }
 });
 

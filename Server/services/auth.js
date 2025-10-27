@@ -48,10 +48,10 @@ const loginUser = async (email, password, res) => {
 
     // Set token in the cookie
     res.cookie('Authorization', token, {
-      httpOnly: true,  // Prevent JavaScript from accessing the cookie
-      secure: true,    // Set to true for HTTPS (use in production only)
-      sameSite: 'none', // For cross-site cookie requests (important for cross-origin requests)
-      maxAge: 3600000, // Token expires in 1 hour (3600000ms)
+    httpOnly: true,
+  secure: false,
+  sameSite: 'lax', // 'none' only if you need true cross-site (HTTPS required)
+  maxAge: 3600000,
     });
 
     return token; // Return success message
@@ -105,15 +105,15 @@ const userRoutes = (router) => {
   });
 
   // Login route
-  router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-      const result = await loginUser(email, password, res);
-      res.status(200).json({ message: result });
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
-  });
+  // router.post('/login', async (req, res) => {
+  //   const { email, password } = req.body;
+  //   try {
+  //     const result = await loginUser(email, password, res);
+  //     res.status(200).json({ message: result });
+  //   } catch (err) {
+  //     res.status(500).json({ error: err.message });
+  //   }
+  // });
 };
 
 // Admin Routes
@@ -123,6 +123,18 @@ const adminRoutes = (router) => {
     await adminLogin(email, password, res);
   });
 };
+const getUserProfile = async (userId) => {
+  try {
+    const user = await UsersModel.findById(userId).select('firstName lastName email'); // Only select required fields
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return user; // Send fresh user data
+  } catch (err) {
+    throw new Error('Error fetching user profile: ' + err.message);
+  }
+};
 
 module.exports = {
   adminLogin,
@@ -130,5 +142,5 @@ module.exports = {
   adminRoutes,
   registerUser,
   loginUser,
-
+  getUserProfile
 };

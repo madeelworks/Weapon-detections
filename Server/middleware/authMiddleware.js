@@ -6,6 +6,8 @@ const JWT_SECRET_KEY = 'adeel';  // Make sure this matches the one in auth.js
 const authenticate = (req, res, next) => {
   const token = req.header('Authorization') && req.header('Authorization').split(' ')[1];
 
+  console.log("auth token", token)
+
   if (!token) {
     return res.status(401).json({ error: 'Access denied. No token provided.' });
   }

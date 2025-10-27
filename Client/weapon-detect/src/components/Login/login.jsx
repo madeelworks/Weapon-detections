@@ -18,16 +18,16 @@ const Login = ({ setIsLoggedIn }) => {
     }
 
     // Axios request to send login data
-    axios.post('http://localhost:3001/auth/login', { email, password })
+    axios.post('http://localhost:3001/auth/login', { email, password }, {   withCredentials: true })
       .then(result => {
         console.log("result", result);
         // If login is successful, navigate to dashboard
-        if (result.data.message === "Login successful") {
+        if (result.data.message === "success") {
           setIsLoggedIn(true); // Set the login state to true
           console.log("User logged in successfully");
 
           // Use navigate to redirect to the dashboard
-          navigate('/UserDashboard'); // Navigate to the dashboard page
+          navigate('/UserDashboard/UserDash'); // Navigate to the dashboard page
         } else {
           setErrorMessage("Invalid credentials, please try again.");
         }

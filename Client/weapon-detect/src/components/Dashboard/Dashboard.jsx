@@ -8,28 +8,28 @@ const Dashboard = ({ handleLogout }) => {
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
 
-  // Simulated Camera Data
-  const cameras = [
-    { id: 1, title: "Camera 1", streamUrl: "/src/assets/detection.mp4" },
-    { id: 2, title: "Camera 2", streamUrl: "/src/assets/v8l.mp4" },
-    { id: 3, title: "Camera 3", streamUrl: "/src/assets/v8n.mp4" },
-    { id: 4, title: "Camera 4", streamUrl: "/src/assets/v8s.mp4" },
-  ];
+  // // Simulated Camera Data
+  // const cameras = [
+  //   { id: 1, title: "Camera 1", streamUrl: "/src/assets/detection.mp4" },
+  //   { id: 2, title: "Camera 2", streamUrl: "/src/assets/v8l.mp4" },
+  //   { id: 3, title: "Camera 3", streamUrl: "/src/assets/v8n.mp4" },
+  //   { id: 4, title: "Camera 4", streamUrl: "/src/assets/v8s.mp4" },
+  // ];
 
-  // Function to handle camera selection
-  const handleCameraClick = (camera) => {
-    setSelectedCamera(camera);
-  };
+  // // Function to handle camera selection
+  // const handleCameraClick = (camera) => {
+  //   setSelectedCamera(camera);
+  // };
 
-  // Function to open the dialog
-  const openDialog = () => {
-    setIsDialogOpen(true);
-  };
+  // // Function to open the dialog
+  // const openDialog = () => {
+  //   setIsDialogOpen(true);
+  // };
 
-  // Function to close the dialog
-  const closeDialog = () => {
-    setIsDialogOpen(false);
-  };
+  // // Function to close the dialog
+  // const closeDialog = () => {
+  //   setIsDialogOpen(false);
+  // };
 
   const navs = [
     {
@@ -189,13 +189,13 @@ const Dashboard = ({ handleLogout }) => {
 
   {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between  px-18 p-14 shadow-sm text-3xl">
+          <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between  px-18 p-14 shadow-sm text-3xl">
             <span className="ml-2 text-white font-bold">Welcome to User Dashboard</span>
             <div className="flex-1"></div>
             <div className="flex items-center space-x-4">
               <div className="text-white text-2xl">{new Date().toLocaleDateString()}</div>
             </div>
-          </header> */}
+          </header>
 
 
         <Outlet />

@@ -9,11 +9,14 @@ import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/login";
 import SignUp from "./components/SignUp/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard"; 
-import AdminDashboard from "./components/AdminDashboard/Dashboard";// Admin dashboard
+import AdminDashboard from "./components/AdminDashboard/Dashboard"; // Admin dashboard
 import UserDashboard from "./components/UserDashboard/UserDashboard"; // User dashboard
 import AdminLogin from "./components/AdminLogin/AdminLogin";
 import Users from "./components/Users/Users";
 import Alerts from "./components/Alerts/Alerts";
+import EditProfile from "./components/EditProfile/EditProfile";
+import UserDash from "./components/UserDash/UserDash";
+import Streaming from "./components/Streaming/Streaming";
 
 // Wrapper component to use useLocation
 const AppWrapper = () => {
@@ -25,7 +28,7 @@ const AppWrapper = () => {
   const handleAdminLogout = () => setIsAdminLoggedIn(false);
 
   // Determine if header/footer should be hidden (for both dashboards)
-const hideHeaderFooter = location.pathname.startsWith("/dashboard") || location.pathname.startsWith("/UserDashboard");
+  const hideHeaderFooter = location.pathname.startsWith("/dashboard") || location.pathname.startsWith("/UserDashboard");
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -48,17 +51,24 @@ const hideHeaderFooter = location.pathname.startsWith("/dashboard") || location.
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/signup" element={<SignUp />} />
 
-          {/* Protected User Dashboard */}
-          <Route
+          {/* Protected User Dashboard with nested routes for EditProfile and Alerts */}
+    
+
+              <Route
             path="/UserDashboard"
             element={isLoggedIn ? <UserDashboard handleLogout={handleLogout} /> : <Navigate to="/login" replace />}
-          />
+          >
+            <Route path="/UserDashboard/UserDash" element={<UserDash />} />
+            <Route path="/UserDashboard/EditProfile" element={<EditProfile />} />
+                        <Route path="/UserDashboard/Streaming" element={<Streaming />} />
+
+          </Route>
 
           {/* Admin Login */}
           <Route path="/admin/login" element={<AdminLogin setIsAdminLoggedIn={setIsAdminLoggedIn} />} />
 
           {/* Protected Admin Dashboard */}
-           <Route
+          <Route
             path="/dashboard"
             element={isAdminLoggedIn ? <Dashboard handleLogout={handleAdminLogout} /> : <Navigate to="/admin/login" replace />}
           >
@@ -83,6 +93,8 @@ const App = () => (
 );
 
 export default App;
+
+
 
 
 

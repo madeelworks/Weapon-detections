@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -8,16 +9,14 @@ const { loginUser } = require('../services/auth');
 
 const router = express.Router();
 
-// JWT Secret Key (for simplicity, use a hardcoded secret in this example)
-const JWT_SECRET_KEY = 'adeel'; 
-
-// Admin credentials
-const ADMIN_EMAIL = "admin@example.com"; 
-const ADMIN_PASSWORD = "adminpassword"; 
-
-// Brevo (formerly Sendinblue) Setup
+// Brevo (formerly Sendinblue) Setup using environment variable
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = process.env.SENDINBLUE_API_KEY;  // Access API key from .env
+
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;  // Get secret key from .env
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;  // Get admin email from .env
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;  // Get admin password from .env
 
 // Forgot Password
 router.post('/forgot-password', (req, res) => {
@@ -30,7 +29,6 @@ router.post('/forgot-password', (req, res) => {
 
       const token = jwt.sign({ id: user._id }, JWT_SECRET_KEY, { expiresIn: '1d' });
 
-      // Create email send object using Brevo API
       const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
       const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
@@ -56,17 +54,11 @@ router.post('/forgot-password', (req, res) => {
 });
 
 // Reset Password Route
-// Reset Password Route
 router.post('/reset-password/:id/:token', (req, res) => {
-  const { id, token } = req.params;  // Extract id and token from URL parameters
+  const { id, token } = req.params;
   const { password } = req.body;
 
-  // Decode the URL parameters
-  const decodedId = decodeURIComponent(id);
-  const decodedToken = decodeURIComponent(token);
-
-  // Verify token and proceed with password reset
-  jwt.verify(decodedToken, JWT_SECRET_KEY, (err, decoded) => {
+  jwt.verify(token, JWT_SECRET_KEY, (err, decoded) => {
     if (err) {
       return res.status(400).json({ Status: "Error", message: "Invalid or expired token." });
     }
@@ -76,7 +68,7 @@ router.post('/reset-password/:id/:token', (req, res) => {
         return res.status(500).json({ Status: "Error", message: "Error hashing the password." });
       }
 
-      UsersModel.findByIdAndUpdate(decodedId, { password: hashedPassword }, { new: true })
+      UsersModel.findByIdAndUpdate(decoded.id, { password: hashedPassword }, { new: true })
         .then((user) => {
           if (!user) {
             return res.status(404).json({ Status: "Error", message: "User not found." });

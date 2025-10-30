@@ -18,7 +18,7 @@ const Login = ({ setIsLoggedIn }) => {
     }
 
     // Axios request to send login data
-    axios.post('http://localhost:3001/auth/login', { email, password }, {   withCredentials: true })
+    axios.post('http://localhost:3001/auth/login', { email, password }, { withCredentials: true })
       .then(result => {
         console.log("result", result);
         // If login is successful, navigate to dashboard
@@ -79,14 +79,15 @@ const Login = ({ setIsLoggedIn }) => {
           </button>
         </form>
 
+        {/* Forgot Password Link */}
         <p className="text-center mt-6 text-white">
-          Don't have an account?{' '}
+          Forgot Password?{' '}
           <a
             href="#"
-            onClick={() => navigate('/signup')} // This will navigate to the signup page
+            onClick={() => navigate('/forgot-password')} // This will navigate to the Forgot Password page
             className="text-red-500 hover:underline"
           >
-            Sign up
+            Reset here
           </a>
         </p>
       </div>

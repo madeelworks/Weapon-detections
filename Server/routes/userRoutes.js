@@ -63,5 +63,31 @@ router.post('/update-password', async (req, res) => {
     res.status(500).json({ message: 'Error updating password', error: err.message });
   }
 });
+//Update user profile picture route
+router.post('/update-profile-picture', async (req, res) => {
+  const { profilePicture } = req.body;  // base64 image string
+  const token = req.cookies.Authorization;
+
+  if (!token) {
+    return res.status(403).json({ message: "No token provided" });
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, "adeel");
+    const user = await UsersModel.findById(decodedToken.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update profile picture
+    user.profilePicture = profilePicture;
+    await user.save();
+
+    res.status(200).json({ message: 'Profile picture updated successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating profile picture', error: err.message });
+  }
+});
 
 module.exports = router;

@@ -20,6 +20,8 @@ import Streaming from "./components/Streaming/Streaming";
 import Acknowledge from "./components/Acknowledge/Acknowledge";
 import History from "./components/History/History";
 import SuspiciousActivity from "./components/SuspiciousActivity/SuspiciousActivity";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 // Wrapper component to use useLocation
 const AppWrapper = () => {
@@ -52,7 +54,8 @@ const AppWrapper = () => {
             }
           />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-password/:id/:token" element={<ResetPassword />} />
 
           {/* Protected User Dashboard with nested routes for EditProfile and Alerts */}
     
@@ -63,13 +66,11 @@ const AppWrapper = () => {
           >
             <Route path="/UserDashboard/UserDash" element={<UserDash />} />
             <Route path="/UserDashboard/EditProfile" element={<EditProfile />} />
-                        <Route path="/UserDashboard/Streaming" element={<Streaming />} />
-                                                <Route path="/UserDashboard/alerts" element={<Alerts />} />
-                                                                                                <Route path="/UserDashboard/acknowledge" element={<Acknowledge />} />
-                                                                                                <Route path="/UserDashboard/history" element={<History />} />
-                                                                                                <Route path="/UserDashboard/report" element={<SuspiciousActivity />} />
-
-
+            <Route path="/UserDashboard/Streaming" element={<Streaming />} />
+            <Route path="/UserDashboard/alerts" element={<Alerts />} />
+            <Route path="/UserDashboard/acknowledge" element={<Acknowledge />} />
+            <Route path="/UserDashboard/history" element={<History />} />
+            <Route path="/UserDashboard/report" element={<SuspiciousActivity />} />
 
           </Route>
 

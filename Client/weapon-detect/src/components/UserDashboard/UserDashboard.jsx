@@ -187,9 +187,9 @@ const UserDashboard = ({ handleLogout }) => {
 
   return (
     <div
-      className="text-gray-800"
+      className="text-gray-100"
       style={{
-        backgroundImage: "url(/src/assets/dashboard.jpg)",
+        backgroundImage: "linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,0.9))",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -200,7 +200,7 @@ const UserDashboard = ({ handleLogout }) => {
         <aside
           className={`${
             sidebarOpen ? "translate-x-0" : "-translate-x-full md:w-0"
-          } fixed md:relative inset-y-0 left-0 z-40 w-64 bg-gradient-to-r from-[#482566] to-black border-r border-gray-200 shadow-lg transition-all duration-300 ease-in-out`}
+          } fixed md:relative inset-y-0 left-0 z-40 w-64 bg-black border-r border-white shadow-lg transition-all duration-300 ease-in-out`}
         >
           <div className="flex flex-col h-full">
             {/* Logo */}
@@ -234,10 +234,10 @@ const UserDashboard = ({ handleLogout }) => {
                      <Link
                   key={index}
                   to={nav.URL}
-                  className={`flex items-center p-2 rounded-lg text-sm ${
+                  className={`flex items-center p-2 rounded-lg text-sm transition ${
                     nav.URL === activeNav
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-white hover:bg-gray-50 hover:text-blue-600"
+                      ? "bg-white text-red-600"
+                      : "text-white/80 hover:bg-white hover:text-red-600"
                   }`}
                   onClick={() => setActiveNav(nav.URL)} // Set the active nav
                 >
@@ -249,7 +249,7 @@ const UserDashboard = ({ handleLogout }) => {
               {/* Logout Button */}
               <button
                 onClick={handleLogout}
-                className="text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600"
+                className="text-white bg-orange-600 px-4 py-2 rounded-md hover:bg-orange-500"
               >
                 Logout
               </button>
@@ -260,18 +260,18 @@ const UserDashboard = ({ handleLogout }) => {
         {/* Overlay for mobile when sidebar is open */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 bg-black/50 z-30 md:hidden"
+            className="fixed inset-0 bg-white z-30 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
 
   {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-0">
-          <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between px-4 md:px-18 p-14 shadow-sm text-2xl md:text-3xl">
+          <header className="bg- border-b border-white h-16 flex items-center justify-between px-4 md:px-18 p-14 shadow-sm text-2xl md:text-3xl">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-white hover:text-red-500"
+                className="text-white hover:text-orange-400"
                 aria-label="Toggle sidebar"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -297,8 +297,8 @@ const UserDashboard = ({ handleLogout }) => {
           </header>
 
 
-        <div className="flex-1 overflow-y-auto">
-          <div className="p-4">
+        <div className="flex-1 overflow-y-auto bg-gray-100">
+          <div className="p-4 min-h-full">
             <Outlet />
           </div>
         </div>

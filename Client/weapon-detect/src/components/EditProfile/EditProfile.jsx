@@ -143,7 +143,7 @@ function EditProfile() {
                   id="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
+                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50 text-gray-500"
                   required
                   readOnly
                 />
@@ -155,7 +155,7 @@ function EditProfile() {
                   id="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
+                  className="w-full p-2 border text-gray-500 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
                   required
                   readOnly
                 />
@@ -167,7 +167,7 @@ function EditProfile() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
+                  className="w-full p-2 border text-gray-500 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
                   required
                   readOnly
                 />
@@ -183,7 +183,7 @@ function EditProfile() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                  className="w-full p-2 border text-gray-500 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
                   required
                 />
               </div>
@@ -194,7 +194,7 @@ function EditProfile() {
                   id="newPassword"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                  className="w-full p-2 border text-gray-500 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
                   required
                 />
               </div>
@@ -205,7 +205,7 @@ function EditProfile() {
                   id="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                  className="w-full p-2 border text-gray-500 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
                   required
                 />
               </div>

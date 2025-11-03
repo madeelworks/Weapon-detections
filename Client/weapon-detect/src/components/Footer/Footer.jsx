@@ -2,7 +2,9 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white bg-gradient-to-r from-[#482566]   to-black mt-auto">
+          <footer className="backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/60 mt-auto">
+
+    {/* <footer className="bg-black text-white  mt-auto"> */}
       <div className="mx-auto w-full max-w-screen-xl p-6 py-8">
         <div className="md:flex md:justify-between">
           {/* Logo Section */}
@@ -12,6 +14,9 @@ export default function Footer() {
               alt="Logo"
               className="w-36 h-auto"
             />
+            <span className="text-white font-extrabold tracking-wide text-lg">
+              Recon <span className="text-red-500">Eye</span>
+            </span>
           </div>
 
           {/* Links Section */}
@@ -23,7 +28,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/#home"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Home
                   </a>
@@ -31,7 +36,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/about"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     About Us
                   </a>
@@ -39,7 +44,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/contact"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Contact Us
                   </a>
@@ -47,7 +52,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/services"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Our Services
                   </a>
@@ -62,7 +67,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/home"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Support center
                   </a>
@@ -70,7 +75,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/about"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     How to start?
                   </a>
@@ -78,7 +83,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/#about"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Privacy Policy
                   </a>
@@ -86,7 +91,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="/#about"
-                    className="text-sm font-semibold text-white hover:text-blue-400 transition duration-300"
+                    className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Terms Of Use
                   </a>
@@ -101,7 +106,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="https://www.instagram.com/adeel._.dev/?igsh=MTFlMm05NWlkOWVycQ%3D%3D#"
-                    className="hover:text-blue-400 transition duration-300"
+                    className="hover:text-red-500 transition duration-300 text-white"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -111,7 +116,7 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     href="https://www.linkedin.com/in/muhammad-adeel-953245257/?originalSubdomain=pk"
-                    className="hover:text-blue-400 transition duration-300"
+                    className="hover:text-red-500 transition duration- text-white"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -123,8 +128,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-        <hr className="my-6 border-white-700 sm:mx-auto lg:my-8" />
+        <hr className="my-6 border-white sm:mx-auto lg:my-8" />
 
         {/* Footer Bottom Section */}
         <div className="sm:flex sm:items-center sm:justify-between">
@@ -135,14 +139,14 @@ export default function Footer() {
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
             <a
               href="https://wa.me/923195532126"
-              className="text-gray-300 hover:text-blue-400 transition duration-300"
+              className="text-gray-300 hover:text-red-500 transition duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
-                height="26"
+                height="24"
                 fill="currentColor"
                 className="bi bi-whatsapp"
                 viewBox="0 0 16 16"
@@ -153,7 +157,7 @@ export default function Footer() {
             </a>
             <a
               href="https://www.instagram.com/adeel._.dev/?igsh=MTFlMm05NWlkOWVycQ%3D%3D#"
-              className="text-gray-300 hover:text-blue-400 transition duration-300"
+              className="text-gray-300 hover:text-red-500 transition duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -176,16 +180,16 @@ export default function Footer() {
               target="_blank" 
               rel="nofollow"
               href="mailto:muhammad.adeel@genesisengr.com"
-              className="text-gray-300 hover:text-blue-400 transition duration-300"
+              className="text-gray-300 hover:text-red-500 transition duration-300"
               // target="_blank"
               // rel="noopener noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
-                height="26"
+                height="24"
                 fill="currentColor"
-                class="bi bi-envelope"
+                className="bi bi-envelope"
                 viewBox="0 0 16 16"
               >
                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
@@ -193,16 +197,16 @@ export default function Footer() {
             </a>
             <a
               href="https://maps.app.goo.gl/PwxahMQcZxNpsrd58"
-              className="text-gray-300 hover:text-blue-400 transition duration-300"
+              className="text-gray-300 hover:text-red-500 transition duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
-                height="26"
+                height="24"
                 fill="currentColor"
-                class="bi bi-geo-alt-fill"
+                className="bi bi-geo-alt-fill"
                 viewBox="0 0 16 16"
               >
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />

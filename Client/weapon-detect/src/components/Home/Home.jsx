@@ -2,48 +2,51 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div className="relative min-h-screen py-16 overflow-hidden">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-      >
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background video + overlay */}
+      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10">
         <source src="/src/assets/weapon.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 -z-10" />
 
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
-          {/* Right Section: Text */}
-          <div className="w-full md:w-7/12 lg:w-7/12 text-center md:text-left order-2 md:order-1 mt-10">
-            <h1 className="text-5xl font-bold mb-4 text-white mt-10">Weapon Detection System</h1>
-
-            <p className="mt-8 text-white text-base ">
-              Our Weapon Detection System is an advanced AI-powered solution designed to identify weapons in real-time through video feeds or surveillance footage. Designed for high-stakes environments, this solution empowers security teams to act proactively—protecting lives before incidents occur.
+      {/* Hero */}
+      <div className="mx-auto max-w-7xl px-4 pt-28 pb-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+              AI-Powered <span className="text-red-500">Weapon Detection</span>
+            </h1>
+            <p className="mt-5 text-white/80 text-base">
+              Real-time detection from live feeds to protect people and spaces. High accuracy, low latency, and instant awareness.
             </p>
-
-            <div className="mt-6">
-              <a
-                href="/#contact"
-                className="bg-red-500 text-white px-8 py-3 rounded-full text-xl hover:bg-red-600"
-              >
-                Contact Us
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href="#contact" className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold transition">
+                Get a demo
+              </a>
+              <a href="#about" className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full font-semibold transition">
+                Learn more
               </a>
             </div>
           </div>
-
-          {/* Left Section: Image */}
-          <div className="w-full md:w-8/12 lg:w-8/12 flex justify-center mt-6 order-1 md:order-2">
-            <img
-              src="/src/assets/weapons-1.png"
-              alt="React development"
-              className="w-full lg:w-256 xl:w-320 h-full object-contain rounded-xl mt-6 "
-            />
+          <div className="flex justify-center">
+            <img src="/src/assets/weapons-1.png" alt="Weapon detection" className="w-full max-w-xl rounded-xl shadow-2xl ring-1 ring-white/10" />
           </div>
+        </div>
+      </div>
+
+      {/* Feature highlights */}
+      <div className="bg-black/70 border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { title: 'Real-time analytics', desc: 'Process frames on the edge or the server and surface instant alerts.' },
+            { title: 'High accuracy', desc: 'Powered by YOLO models tuned for weapon classes with confidence scoring.' },
+            { title: 'Easy integration', desc: 'Stream from webcams, RTSP, or files and render overlays in your app.' },
+          ].map((f) => (
+            <div key={f.title} className="rounded-xl bg-white/5 ring-1 ring-white/10 p-5 text-white">
+              <div className="text-red-500 font-semibold">{f.title}</div>
+              <div className="text-sm text-white/80 mt-2">{f.desc}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

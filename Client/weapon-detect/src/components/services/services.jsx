@@ -151,7 +151,7 @@ export class Services extends Component {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-            <div className="service-item bg-gradient-to-r from-[#4F2A7F] to-black p-6 rounded-lg shadow-lg text-center">
+            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
               <img
                 src="/src/assets/Service4.png"
                 alt="Private Investigation Services"
@@ -168,7 +168,7 @@ Seamless Security Integration
                 Know More
               </button>
             </div>
-            <div className="service-item bg-gradient-to-r from-[#4F2A7F] to-black p-6 rounded-lg shadow-lg text-center">
+            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
               <img
                 src="/src/assets/Service5.png"
                 alt="Personal Investigation Services"
@@ -185,7 +185,7 @@ Personal Investigation Services
                 Know More
               </button>
             </div>
-            <div className="service-item bg-gradient-to-r from-[#4F2A7F] to-black p-6 rounded-lg shadow-lg text-center">
+            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
               <img
                 src="/src/assets/Service6.png"
                 alt="Armed Security Guard"
@@ -201,7 +201,7 @@ Armed Security Integration
                 Know More
               </button>
             </div>
-            <div className="service-item bg-gradient-to-r from-[#4F2A7F] to-black p-6 rounded-lg shadow-lg text-center">
+            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
               <img
                 src="/src/assets/Service7.png"
                 alt="Event Security"

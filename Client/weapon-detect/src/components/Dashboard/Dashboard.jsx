@@ -205,8 +205,8 @@ const Dashboard = ({ handleLogout }) => {
             </div>
           </header>
 
-        <div className="flex-1 overflow-y-auto">
-          <div className="p-4">
+        <div className="flex-1 overflow-y-auto bg-gray-100">
+          <div className="p-4 min-h-full">
             <Outlet />
           </div>
         </div>

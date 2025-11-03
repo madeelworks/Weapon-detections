@@ -114,7 +114,7 @@ const Streaming = () => {
           <div className="flex items-center gap-2">
             <label className="text-sm text-gray-600">FPS</label>
             <select
-              className="border border-gray-300 rounded px-2 py-1 text-sm"
+              className="border border-gray-300 rounded px-2 py-1 text-sm text-gray-500"
               value={fps}
               onChange={(e) => setFps(Number(e.target.value))}
             >
@@ -159,7 +159,7 @@ const Streaming = () => {
           </div>
 
           <div className="bg-white rounded-xl shadow p-4">
-            <h2 className="font-semibold mb-3">Detections</h2>
+            <h2 className="font-semibold mb-3 text-gray-500">Detections</h2>
             {Array.isArray(detections) && detections.length > 0 ? (
               <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-1">
                 {detections.map((d, i) => (

@@ -14,9 +14,10 @@ const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey = process.env.SENDINBLUE_API_KEY;  // Access API key from .env
 
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;  // Get secret key from .env
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL;  // Get admin email from .env
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;  // Get admin password from .env
+
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'adeel';  // Fallback for local
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@example.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'adminpassword'; // Get admin password from .env
 
 // Forgot Password
 router.post('/forgot-password', (req, res) => {
@@ -93,7 +94,7 @@ router.post('/admin/login', async (req, res) => {
     res.cookie("adminAuth", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None',
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
       maxAge: 3600000, // 1 hour
     });
 

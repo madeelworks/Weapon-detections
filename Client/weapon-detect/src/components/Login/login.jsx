@@ -40,7 +40,7 @@ const Login = ({ setIsLoggedIn }) => {
 
   return (
     <div className="bg-white min-h-screen flex justify-center items-center">
-      <div className="w-[500px] mx-auto mt-4 bg-gradient-to-r from-[#482566] to-black p-12 rounded-lg shadow-lg">
+      <div className="w-[500px] mx-auto mt-4 bg-black p-12 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold mb-6 text-center text-white">Login</h2>
 
         <form onSubmit={handleSubmit}>

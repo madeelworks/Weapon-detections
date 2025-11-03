@@ -40,7 +40,7 @@ const Contact = () => {
 
   return (
     <div id="contact" className="flex flex-col justify-center items-center min-h-screen ">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row bg-gradient-to-r from-[#482566] to-black rounded-lg shadow-lg p-6 md:p-10 gap-8">
+      <div className="w-full max-w-5xl flex flex-col md:flex-row bg-black rounded-lg shadow-lg p-6 md:p-10 gap-8">
         {/* Left Section - Get in Touch */}
         <div className="w-full md:w-1/3 bg-gradient-to-r from-[#482566] to-black rounded-lg p-6 shadow-md">
           <h2 className="text-2xl font-bold text-white mb-4 px-12 mt-6">Get in touch:</h2>

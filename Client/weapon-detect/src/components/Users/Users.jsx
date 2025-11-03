@@ -71,75 +71,104 @@ const Users = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen w-full px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center justify-between">
-        <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold text-gray-900">Users</h1>
-          <p className="mt-2 text-sm text-gray-500">
-            A list of all the users in your account, including their first name, last name, email, password, role, and action.
-          </p>
-        </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+    <div className="bg-gray-50 min-h-screen w-full p-4 sm:p-6">
+      <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Users Management</h1>
+            <p className="mt-1 text-sm text-gray-500">
+              Manage all users in your system
+            </p>
+          </div>
           <button
             type="button"
-            className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition"
             onClick={() => openModal()}
           >
-            Add user
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Add User
           </button>
         </div>
-      </div>
 
-      <div className="mt-8 flow-root">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <table className="relative min-w-full divide-y divide-gray-200">
-              <thead>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider sm:pl-6">
+                  First Name
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
+                  Last Name
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
+                  Email
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
+                  Password
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
+                  Role
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-right text-xs font-semibold text-gray-900 uppercase tracking-wider sm:pr-6">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {userList.length === 0 ? (
                 <tr>
-                  <th scope="col" className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                    First Name
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Last Name
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Email
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Password
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Role
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 pl-24">
-                    Action
-                  </th>
+                  <td colSpan="6" className="px-4 py-12 text-center text-sm text-gray-500 sm:px-6">
+                    No users found. Click "Add User" to create one.
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {userList.map((person) => (
-                  <tr key={person._id}>
-                    <td className="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0">
+              ) : (
+                userList.map((person) => (
+                  <tr key={person._id} className="hover:bg-gray-50 transition">
+                    <td className="whitespace-nowrap py-4 pl-4 text-sm font-medium text-gray-900 sm:pl-6">
                       {person.firstName}
                     </td>
-                    <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{person.lastName}</td>
-                    <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{person.email}</td>
-                    <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{'********'}</td>
-                    <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{person.role}</td>
-                    <td className="pr-20 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
-                      <button onClick={() => openModal(person)} className="text-indigo-600 hover:text-indigo-500">
-                        Edit
-                      </button>
-                      <span className="mx-2 text-gray-500">|</span>
-                      <button onClick={() => deleteUser(person._id)} className="text-red-600 hover:text-red-500">
-                        Delete
-                      </button>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.lastName}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <span className="font-mono text-xs">********</span>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm">
+                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        person.role === 'admin' 
+                          ? 'bg-purple-100 text-purple-800' 
+                          : 'bg-blue-100 text-blue-800'
+                      }`}>
+                        {person.role || 'user'}
+                      </span>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-right text-sm font-medium sm:pr-6">
+                      <div className="flex items-center justify-end gap-3">
+                        <button 
+                          onClick={() => openModal(person)} 
+                          className="text-indigo-600 hover:text-indigo-900 font-medium transition"
+                        >
+                          Edit
+                        </button>
+                        <span className="text-gray-300">|</span>
+                        <button 
+                          onClick={() => {
+                            if (window.confirm(`Are you sure you want to delete ${person.firstName} ${person.lastName}?`)) {
+                              deleteUser(person._id);
+                            }
+                          }} 
+                          className="text-red-600 hover:text-red-900 font-medium transition"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
 

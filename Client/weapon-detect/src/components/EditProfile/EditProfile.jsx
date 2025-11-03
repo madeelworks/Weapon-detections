@@ -100,13 +100,13 @@ function EditProfile() {
 
   return (
     <>
-      {loader ? <div>Loading...</div> : (
-        <div className="max-w-4xl mx-auto mt-2 p-6 border border-gray-300 rounded-lg bg-white shadow-lg mb-2">
-          <h2 className="text-xl font-bold text-center text-gray-800 mb-2">Edit Profile</h2>
+      {loader ? <div className="max-w-4xl mx-auto mt-6 p-6 text-center text-gray-600">Loading...</div> : (
+        <div className="max-w-4xl mx-auto mt-4 p-6 border border-gray-100 rounded-2xl bg-white/95 backdrop-blur shadow mb-6">
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Edit Profile</h2>
 
           {/* Profile Picture */}
           <div className="flex flex-col items-center mb-8">
-            <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300">
+            <div className="w-28 h-28 rounded-full overflow-hidden mb-3 ring-2 ring-offset-2 ring-indigo-500/30">
               {/* Use the default avatar if no profile picture is uploaded */}
               <img
                 src={profilePicture || "/Avatar.png"}  // Default avatar if not selected
@@ -116,7 +116,7 @@ function EditProfile() {
             </div>
             <button
               onClick={() => document.getElementById("profilePicture").click()}
-              className="bg-blue-500 text-white px-2 py-1 rounded-md text-lg hover:bg-blue-400 transition duration-300"
+              className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm hover:bg-indigo-500 transition"
             >
               Change Profile
             </button>
@@ -133,7 +133,7 @@ function EditProfile() {
           </div>
 
           {/* User Info Form */}
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left Column */}
             <div>
               <div className="mb-4">
@@ -143,7 +143,7 @@ function EditProfile() {
                   id="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
                   required
                   readOnly
                 />
@@ -155,7 +155,7 @@ function EditProfile() {
                   id="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
                   required
                   readOnly
                 />
@@ -167,7 +167,7 @@ function EditProfile() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 bg-gray-50"
                   required
                   readOnly
                 />
@@ -183,7 +183,7 @@ function EditProfile() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
                   required
                 />
               </div>
@@ -194,7 +194,7 @@ function EditProfile() {
                   id="newPassword"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
                   required
                 />
               </div>
@@ -205,24 +205,24 @@ function EditProfile() {
                   id="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg"
+                  className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
                   required
                 />
               </div>
             </div>
 
             {/* Submit Buttons */}
-            <div className="col-span-2 flex justify-between">
+            <div className="col-span-2 flex flex-row gap-3 justify-end">
               <button
                 type="button"
                 onClick={handleCancel}
-                className="bg-red-500 text-white px-6 py-3 rounded-md"
+                className="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-6 py-3 rounded-md"
+                className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-500"
               >
                 Update Info
               </button>

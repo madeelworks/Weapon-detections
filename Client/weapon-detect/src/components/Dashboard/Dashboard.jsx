@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { Addusers } from "../../utility/Models/UserModel"; // Import the Addusers component
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Dashboard = ({ handleLogout }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  // Auto-hide sidebar on mobile, show on desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
 
@@ -100,13 +114,13 @@ const Dashboard = ({ handleLogout }) => {
         backgroundPosition: "center",
       }}
     >
-      {/* Layout */}
+      {/* Layout: fixed sidebar, scrollable content only */}
       <div className="flex h-screen overflow-hidden">
-        {/* Sidebar */}
+        {/* Sidebar - completely hidden when closed, overlay on mobile */}
         <aside
           className={`${
-            sidebarOpen ? "w-64" : "w-16"
-          } bg-gradient-to-r from-[#482566] to-black border-r border-gray-200 shadow-sm transition-all duration-300 ease-in-out`}
+            sidebarOpen ? "translate-x-0" : "-translate-x-full md:w-0"
+          } fixed md:relative inset-y-0 left-0 z-40 w-64 bg-gradient-to-r from-[#482566] to-black border-r border-gray-200 shadow-lg transition-all duration-300 ease-in-out`}
         >
           <div className="flex flex-col h-full">
             {/* Logo */}
@@ -124,38 +138,13 @@ const Dashboard = ({ handleLogout }) => {
                 </div>
               )}
               <button
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-gray-200 hover:text-red-500 mt-2"
+                onClick={() => setSidebarOpen(false)}
+                className="text-gray-200 hover:text-red-500 mt-2 md:hidden"
+                aria-label="Close sidebar"
               >
-                {sidebarOpen ? (
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M11 17l-5-5m0 0l5-5m-5 5h12"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                    />
-                  </svg>
-                )}
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
 
@@ -187,18 +176,40 @@ const Dashboard = ({ handleLogout }) => {
           </div>
         </aside>
 
+        {/* Overlay for mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-30 md:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
   {/* Main Content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between  px-18 p-14 shadow-sm text-3xl">
-            <span className="ml-2 text-white font-bold">Welcome to User Dashboard</span>
+        <div className="flex-1 flex flex-col min-h-0">
+          <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between px-4 md:px-18 p-14 shadow-sm text-2xl md:text-3xl">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="text-white hover:text-red-500"
+                aria-label="Toggle sidebar"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+              <span className="text-white font-bold">Admin Dashboard</span>
+            </div>
             <div className="flex-1"></div>
             <div className="flex items-center space-x-4">
-              <div className="text-white text-2xl">{new Date().toLocaleDateString()}</div>
+              <div className="text-white text-lg md:text-2xl">{new Date().toLocaleDateString()}</div>
             </div>
           </header>
 
-
-        <Outlet />
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-4">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </div>
      </div>

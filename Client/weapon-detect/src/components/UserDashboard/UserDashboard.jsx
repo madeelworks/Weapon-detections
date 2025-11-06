@@ -212,9 +212,9 @@ const UserDashboard = ({ handleLogout }) => {
                     alt="Logo"
                     className="w-12 h-auto"
                   />
-                  <span className="ml-2 text-white font-bold text-3xl">
-                    Recon Eye
-                  </span>
+                 <span className="text-white font-extrabold tracking-wide text-lg ml-2">
+              Recon <span className="text-red-500">Eye</span>
+            </span>
                 </div>
               )}
               <button
@@ -249,7 +249,7 @@ const UserDashboard = ({ handleLogout }) => {
               {/* Logout Button */}
               <button
                 onClick={handleLogout}
-                className="text-white bg-orange-600 px-4 py-2 rounded-md hover:bg-orange-500"
+                className="text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600"
               >
                 Logout
               </button>
@@ -271,7 +271,7 @@ const UserDashboard = ({ handleLogout }) => {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-white hover:text-orange-400"
+                className="text-white hover:text-red-500"
                 aria-label="Toggle sidebar"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

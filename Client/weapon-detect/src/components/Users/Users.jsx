@@ -5,7 +5,9 @@ import UserModel from '../../utility/Models/UserModel';
 const Users = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userList, setUserList] = useState([]);
-  const [editUser, setEditUser] = useState(null);  // State to store the user being edited
+  const [editUser, setEditUser] = useState(null); // State to store the user being edited
+  const [currentPage, setCurrentPage] = useState(1); // Track current page
+  const [usersPerPage] = useState(7); // Number of users per page
 
   // Fetch users from the backend when the component loads
   useEffect(() => {
@@ -21,8 +23,13 @@ const Users = () => {
     fetchUsers();
   }, []);
 
+  // Pagination logic
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = userList.slice(indexOfFirstUser, indexOfLastUser);
+
   const openModal = (user = null) => {
-    setEditUser(user);  // Set the user to be edited
+    setEditUser(user); // Set the user to be edited
     setIsModalOpen(true);
   };
 
@@ -69,6 +76,14 @@ const Users = () => {
       console.error('Error deleting user:', error.response?.data || error.message);
     }
   };
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate total pages
+  const totalPages = Math.ceil(userList.length / usersPerPage);
 
   return (
     <div className="bg-gray-50 min-h-screen w-full p-4 sm:p-6">
@@ -117,14 +132,14 @@ const Users = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {userList.length === 0 ? (
+              {currentUsers.length === 0 ? (
                 <tr>
                   <td colSpan="6" className="px-4 py-12 text-center text-sm text-gray-500 sm:px-6">
                     No users found. Click "Add User" to create one.
                   </td>
                 </tr>
               ) : (
-                userList.map((person) => (
+                currentUsers.map((person) => (
                   <tr key={person._id} className="hover:bg-gray-50 transition">
                     <td className="whitespace-nowrap py-4 pl-4 text-sm font-medium text-gray-900 sm:pl-6">
                       {person.firstName}
@@ -169,6 +184,24 @@ const Users = () => {
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="flex justify-center mt-4">
+          <button 
+            onClick={() => handlePageChange(currentPage - 1)} 
+            disabled={currentPage === 1} 
+            className={`px-4 py-2 ${currentPage > 1 ? 'hover:text-red-500 underline' : 'text-gray-500'} bg-indigo-600 text-white rounded-l-md`}
+          >
+            Previous
+          </button>
+          <button 
+            onClick={() => handlePageChange(currentPage + 1)} 
+            disabled={currentPage === totalPages} 
+            className={`px-4 py-2 ${currentPage < totalPages ? 'hover:text-red-500 underline' : 'text-gray-500'} bg-indigo-600 text-white rounded-r-md`}
+          >
+            Next
+          </button>
         </div>
       </div>
 

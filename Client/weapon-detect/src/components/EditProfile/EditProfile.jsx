@@ -216,8 +216,7 @@ function EditProfile() {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600"
-              >
+                                className="text-white bg-red-500 px-6 py-3 rounded-md hover:bg-red-600"              >
                 Cancel
               </button>
               <button

@@ -86,9 +86,9 @@ export default function About() {
     {/* Right Section: Image */}
     <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center order-1 md:order-2">
       <img
-        src="/src/assets/peopless.png" // Replace with your actual image path
+        src="/src/assets/peoplesss.jpg" // Replace with your actual image path
         alt="About Us"
-        className="w-full object-cover rounded-lg"
+        className="w-full object-cover "
       />
     </div>
   </div>

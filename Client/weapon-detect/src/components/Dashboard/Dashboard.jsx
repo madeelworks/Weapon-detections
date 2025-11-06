@@ -120,7 +120,7 @@ const Dashboard = ({ handleLogout }) => {
         <aside
           className={`${
             sidebarOpen ? "translate-x-0" : "-translate-x-full md:w-0"
-          } fixed md:relative inset-y-0 left-0 z-40 w-64 bg-gradient-to-r from-[#482566] to-black border-r border-gray-200 shadow-lg transition-all duration-300 ease-in-out`}
+          } fixed md:relative inset-y-0 left-0 z-40 w-64 bg-black border-r border-gray-200 shadow-lg transition-all duration-300 ease-in-out`}
         >
           <div className="flex flex-col h-full">
             {/* Logo */}
@@ -132,9 +132,10 @@ const Dashboard = ({ handleLogout }) => {
                     alt="Logo"
                     className="w-12 h-auto"
                   />
-                  <span className="ml-2 text-white font-bold text-3xl">
-                    Recon Eye
-                  </span>
+                    <span className="text-white font-extrabold tracking-wide text-lg ml-2">
+              Recon <span className="text-red-500">Eye</span>
+            </span>
+             
                 </div>
               )}
               <button
@@ -156,8 +157,8 @@ const Dashboard = ({ handleLogout }) => {
                   to={nav.URL}
                   className={`flex items-center p-2 rounded-lg text-sm ${
                     index === 0
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-white hover:bg-gray-50 hover:text-blue-600"
+                       ? "bg-white text-red-600"
+                      : "text-white/80 hover:bg-white hover:text-red-600"
                   }`}
                 >
                   <div className="mr-2">{nav.icon}</div>
@@ -186,7 +187,7 @@ const Dashboard = ({ handleLogout }) => {
 
   {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-0">
-          <header className="bg-gradient-to-r from-[#482566] to-black border-b border-gray-200 h-16 flex items-center justify-between px-4 md:px-18 p-14 shadow-sm text-2xl md:text-3xl">
+          <header className="bg-black border-b border-gray-200 h-16 flex items-center justify-between px-4 md:px-18 p-14 shadow-sm text-2xl md:text-3xl">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}

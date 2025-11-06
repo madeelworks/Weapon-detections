@@ -40,14 +40,14 @@ const AdminLogin = ({ setIsAdminLoggedIn }) => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-[#4F2A7F] to-[#482566]">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96">
-        <h1 className="text-3xl font-bold text-center text-[#4F2A7F] mb-6">Admin Login</h1>
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <div className="bg-black p-8 rounded-lg shadow-lg w-full sm:w-96">
+        <h1 className="text-3xl font-bold text-center text-white mb-6">Admin Login</h1>
 
         {/* Login Form */}
         <form onSubmit={handleAdminLogin}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-lg font-medium text-gray-700">Email</label>
+            <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
             <input
               id="email"
               type="email"
@@ -60,7 +60,7 @@ const AdminLogin = ({ setIsAdminLoggedIn }) => {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="password" className="block text-lg font-medium text-gray-700">Password</label>
+            <label htmlFor="password" className="block text-lg font-medium text-white">Password</label>
             <input
               id="password"
               type="password"
@@ -78,15 +78,13 @@ const AdminLogin = ({ setIsAdminLoggedIn }) => {
 
           <button
             type="submit"
-            className="w-full py-3 mt-4 bg-[#4F2A7F] text-white font-semibold rounded-md hover:bg-[#482566] transition duration-300"
+            className="w-full py-3 mt-4 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600  transition duration-300"
           >
             Login
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-500">Forgot your password?</p>
-        </div>
+     
       </div>
     </div>
   );

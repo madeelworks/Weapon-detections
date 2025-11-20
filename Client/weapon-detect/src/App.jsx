@@ -22,6 +22,11 @@ import History from "./components/History/History";
 import SuspiciousActivity from "./components/SuspiciousActivity/SuspiciousActivity";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
+import Blog from "./components/Blog/Blog";
+import Support from "./components/Support/Support";
+import Start from "./components/Start/Start";
+import Privacy from "./components/Privacy/Privacy";
+import Terms from "./components/Terms/Terms";
 
 // Wrapper component to use useLocation
 const AppWrapper = () => {
@@ -54,6 +59,11 @@ const AppWrapper = () => {
             }
           />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/start" element={<Start />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
 

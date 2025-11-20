@@ -66,7 +66,7 @@ export default function Footer() {
                 <h2 className="mb-6 text-sm font-semibold text-white uppercase">Help</h2>
                 <li className="mb-4">
                   <a
-                    href="/home"
+                    href="/support"
                     className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Support center
@@ -74,7 +74,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <a
-                    href="/about"
+                    href="/start"
                     className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     How to start?
@@ -82,7 +82,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <a
-                    href="/#about"
+                    href="/privacy"
                     className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Privacy Policy
@@ -90,7 +90,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <a
-                    href="/#about"
+                    href="/terms"
                     className="text-sm font-semibold text-white hover:text-red-500 transition duration-300"
                   >
                     Terms Of Use
@@ -177,12 +177,10 @@ export default function Footer() {
               <span className="sr-only">Instagram</span>
             </a>
             <a
-              target="_blank" 
-              rel="nofollow"
-              href="mailto:muhammad.adeel@genesisengr.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammad.adeel@genesisengr.com&su=ReconEye%20Inquiry&body=Hello%20ReconEye%20team,%20I%20would%20like%20to%20know%20more%20about%20your%20weapon%20detection%20system."
               className="text-gray-300 hover:text-red-500 transition duration-300"
-              // target="_blank"
-              // rel="noopener noreferrer"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');  // Import the auth routes
 const userRoutes = require('./routes/userRoutes');
+const detectionRoutes = require("./routes/detection");
 
 const app = express();
 
@@ -32,6 +33,7 @@ mongoose.connect('mongodb+srv://adeeltechpro_db_user:VDUv4DZ6w4tcIMjs@cluster0.v
 // Use the routes for /auth
 app.use('/auth', authRoutes);  // Register authentication routes
 app.use('/user', userRoutes);  // Register authentication routes
+app.use("/api/detection", detectionRoutes);  // Register authentication routes
 
 // Start the server
 app.listen(3001, () => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 /**
  * Expected alert shape from API:
@@ -20,33 +21,40 @@ const Alerts = () => {
   const [selectedAlertId, setSelectedAlertId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
-
-  const userId = ""; // e.g. const { user } = useAuth(); const userId = user?._id;
-
+  
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
+        let userID = ""; 
         setLoading(true);
         setErr("");
-        const res = await axios.get(`http://localhost:3001/alerts`, {
-          params: { userId }, // backend should filter by userId
+         const user = await axios.get("http://localhost:3001/user/profile", { withCredentials: true });
+        console.log("user", user)
+
+         if(!user){
+
+          console.log("User Not found")
+          return
+         }
+         userID = user.data._id
+
+         console.log("userID", userID)
+        const res = await axios.get(`http://localhost:3001/api/detection/${userID}`,  {
           withCredentials: true,
         });
-        const list = Array.isArray(res.data) ? res.data : (res.data?.data || []);
-        setAlerts(list);
-        // Pre-select first alert (optional)
-        if (list.length && !selectedAlertId) {
-          setSelectedAlertId(list[0]._id);
-        }
+
+        console.log("res", res);
+        setAlerts(res.data.data);
+      
       } catch (e) {
-        setErr("Failed to load alerts. Please try again.");
+        setErr("Failed to load alerts. Please try again.", e);
       } finally {
         setLoading(false);
       }
     };
 
     fetchAlerts();
-  }, [userId]); // re-fetch if user changes
+  }, []); 
 
   const selectedAlert = alerts.find(a => a._id === selectedAlertId);
 
@@ -88,12 +96,12 @@ const Alerts = () => {
                 {alerts.map((alert) => (
                   <li
                     key={alert._id}
-                    className={`border rounded-lg p-4 hover:shadow-sm transition bg-white ${
-                      selectedAlertId === alert._id ? "border-blue-500 ring-1 ring-blue-100" : "border-gray-200"
-                    }`}
+                    // className={`border rounded-lg p-4 hover:shadow-sm transition bg-white ${
+                    //   selectedAlertId === alert._id ? "border-blue-500 ring-1 ring-blue-100" : "border-gray-200"
+                    // }`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <div>
+                      {/* <div>
                         <h3 className="text-lg font-semibold">{alert.title || "Untitled Alert"}</h3>
                         <p className="text-sm text-gray-600 mt-1">
                           {alert.description || "No description"}
@@ -108,24 +116,18 @@ const Alerts = () => {
                             Images: {Array.isArray(alert.images) ? alert.images.length : 0}
                           </span>
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className="flex flex-col items-end gap-2">
-                        <button
-                          onClick={() => setSelectedAlertId(alert._id)}
+                        <Link
+                          to={alert.s3_url}
+                          target="_blank"
                           className="px-3 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-500 shadow"
                         >
-                          View Images
-                        </button>
-                        {/* Optional: Quick view first image thumbnail */}
-                        {Array.isArray(alert.images) && alert.images[0] && (
-                          <img
-                            src={alert.images[0]}
-                            alt="first"
-                            className="w-16 h-16 object-cover rounded-md border shadow-sm"
-                          />
-                        )}
+                          View Image
+                        </Link>
                       </div>
+                        
                     </div>
                   </li>
                 ))}

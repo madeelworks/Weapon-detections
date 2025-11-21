@@ -9,6 +9,7 @@ const Streaming = () => {
   const [fps, setFps] = useState(1);
   const [mirror, setMirror] = useState(true);
   const streamRef = useRef(null);
+  const [currentUser, setCurrentUser] = useState(null)
 
   // Handle camera start/stop
   const handleStartStop = async () => {
@@ -41,6 +42,20 @@ const Streaming = () => {
       }
     }
   };
+
+    useEffect(() => {
+      const fetchProfile = async () => {
+        try {
+          const res = await axios.get("http://localhost:3001/user/profile", { withCredentials: true });
+          setCurrentUser(res.data);
+        } catch (e) {
+          console.error("user not found: ",e)
+        }
+      };
+      fetchProfile();
+    }, []);
+
+    console.log("currentUser", currentUser)
 
   // Cleanup on unmount
   useEffect(() => {
@@ -77,6 +92,13 @@ const Streaming = () => {
   }, [streaming, fps]);
 
   const captureAndSendFrame = async () => {
+    if(!currentUser){
+      console.log("User not found")
+      return 
+    }
+
+    console.log("currentUser found", currentUser)
+
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!video || !canvas || !streaming) return;
@@ -91,14 +113,17 @@ const Streaming = () => {
       if (!blob || !streaming) return;
       const formData = new FormData();
       formData.append("file", blob, "frame.jpg");
+
       try {
         const res = await axios.post(
-          "http://localhost:8000/detect-frame",
+          `http://localhost:8000/detect-frame/${currentUser._id}`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
+
+        console.log("res.data.detections", res.data.detections)
         setDetections(res.data.detections || []);
       } catch (err) {
         console.error("Detection error:", err);

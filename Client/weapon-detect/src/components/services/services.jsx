@@ -102,125 +102,87 @@ export class Services extends Component {
 </div>
 
 
-         
-          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg">
-              <img
-                src="/src/assets/Service1.png"
-                alt="Effective"
-                className="w-full h-58 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold text-red-600">Effective</h3>
-              <p className="text-gray-400 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dolor elit nam ac libero eget purus in. Proin integer in malesuada in et egestas adipiscing lacinia.
-              </p>
-            </div>
-            <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg">
-              <img
-                src="/src/assets/Service2.png"
-                alt="Professional"
-                className="w-full h-58 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold text-red-600">Professional</h3>
-              <p className="text-gray-400 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dolor elit nam ac libero eget purus in. Proin integer in malesuada in et egestas adipiscing lacinia.
-              </p>
-            </div>
-            <div className="service-item bg-gray-800 p-6 rounded-lg shadow-lg">
-              <img
-                src="/src/assets/Service3.png"
-                alt="Diverse"
-                className="w-full h-58 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold text-red-600">Diverse</h3>
-              <p className="text-gray-400 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dolor elit nam ac libero eget purus in. Proin integer in malesuada in et egestas adipiscing lacinia.
-              </p>
-            </div>
-          </div> */}
+        
         </section>
 
         {/* section for service types */}
-        <section className=" text-black py-20 px-10 ">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-red-600">
-              Take A Look At Services We Provide
-            </h2>
-            <p className="mt-4 text-lg">
-              Recon Eye is AI-based weapon detection systems deliver real-time threat identification and alerts. We offer seamless integration with existing security setups, ensuring proactive protection for public spaces, transportation hubs, and corporate offices. Explore our reliable, scalable solutions to enhance your security with cutting-edge technology.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
-              <img
-                src="/src/assets/Service4.png"
-                alt="Private Investigation Services"
-                className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
-              />
-              <h3 className="text-xl font-semibold text-red-600">
-Seamless Security Integration
-              </h3>
-              <p className="text-white mt-2">
-                Our weapon detection system integrates effortlessly with existing security infrastructure, enhancing current setups with real-time alerts and detection capabilities. 
-              </p>
-              <br></br>
-              <button className="mt-4 bg-red-600 text-white py-2 px-6 rounded-md">
-                Know More
-              </button>
-            </div>
-            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
-              <img
-                src="/src/assets/Service5.png"
-                alt="Personal Investigation Services"
-                className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
-              />
-              <h3 className="text-xl font-semibold text-red-600">
-Personal Investigation Services
-              </h3>
-              <p className="text-white mt-2">
-                 Our system can be used to monitor sensitive areas, detecting potential threats in personal spaces, ensuring security for private affairs, and preventing unauthorized access.
-              </p>
-              <br></br>
-              <button className="mt-4 bg-red-600 text-white py-2 px-6 rounded-md">
-                Know More
-              </button>
-            </div>
-            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
-              <img
-                src="/src/assets/Service6.png"
-                alt="Armed Security Guard"
-                className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
-              />
-              <h3 className="text-xl font-semibold text-red-600">
-Armed Security Integration
-              </h3>
-              <p className="text-white mt-2">
-             We provide real-time weapon detection to complement armed security personnel, enhancing the safety of your facilities by offering immediate alerts for any detected threats.
-              </p>
-              <button className="mt-4 bg-red-600 text-white py-2 px-6 rounded-md">
-                Know More
-              </button>
-            </div>
-            <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center">
-              <img
-                src="/src/assets/Service7.png"
-                alt="Event Security"
-                className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
-              />
-              <h3 className="text-xl font-semibold text-red-600">
-                Event Security
-              </h3>
-              <p className="text-white mt-2">
-                We offer weapon detection services for events of all sizes, ensuring that any potential threats are identified and mitigated before they escalate, providing peace of mind to event organizers and attendees.
+       <section className="text-black py-20 px-12">
+  <div className="text-center mb-16">
+    <h2 className="text-4xl font-bold text-red-600">
+      Take A Look At Services We Provide
+    </h2>
+    <p className="mt-4 text-lg">
+      Recon Eye is AI-based weapon detection systems delivering real-time threat identification and alerts. We offer seamless integration with existing security setups, ensuring proactive protection for public spaces, transportation hubs, and corporate offices. Explore our reliable, scalable solutions to enhance your security with cutting-edge technology.
+    </p>
+  </div>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center flex flex-col justify-between">
+      <img
+        src="/src/assets/Service4.png"
+        alt="Private Investigation Services"
+        className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-red-600">
+        Seamless Security Integration
+      </h3>
+      <p className="text-white mt-2">
+        Our weapon detection system integrates effortlessly with existing security infrastructure, enhancing current setups with real-time alerts and detection capabilities.
+      </p>
+      <a href="/support" className="inline-flex mt-4 bg-red-600 text-white py-2 px-6 rounded-md self-center">
+        Know More
+      </a>
+    </div>
+    <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center flex flex-col justify-between">
+      <img
+        src="/src/assets/Service5.png"
+        alt="Personal Investigation Services"
+        className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-red-600">
+        Personal Investigation Services
+      </h3>
+      <p className="text-white mt-2">
+        Our system can be used to monitor sensitive areas, detecting potential threats in personal spaces, ensuring security for private affairs, and preventing unauthorized access.
+      </p>
+      <a href="/support" className="inline-flex mt-4 bg-red-600 text-white py-2 px-6 rounded-md self-center">
+        Know More
+      </a>
+    </div>
+    <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center flex flex-col justify-between">
+      <img
+        src="/src/assets/Service6.png"
+        alt="Armed Security Guard"
+        className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-red-600">
+        Armed Security Integration
+      </h3>
+      <p className="text-white mt-2">
+        We provide real-time weapon detection to complement armed security personnel, enhancing the safety of your facilities by offering immediate alerts for any detected threats.
+      </p>
+      <a href="/support" className="inline-flex mt-4 bg-red-600 text-white py-2 px-6 rounded-md self-center">
+        Know More
+      </a>
+    </div>
+    <div className="service-item bg-black p-6 rounded-lg shadow-lg text-center flex flex-col justify-between">
+      <img
+        src="/src/assets/Service7.png"
+        alt="Event Security"
+        className="w-20 h-20 object-cover rounded-full mb-4 mx-auto"
+      />
+      <h3 className="text-xl font-semibold text-red-600">
+        Event Security
+      </h3>
+      <p className="text-white mt-2">
+        We offer weapon detection services for events of all sizes, ensuring that any potential threats are identified and mitigated before they escalate, providing peace of mind to event organizers and attendees.
+      </p>
+      <a href="/support" className="inline-flex mt-4 bg-red-600 text-white py-2 px-6 rounded-md self-center">
+        Know More
+      </a>
+    </div>
+  </div>
+</section>
 
-
-              </p>
-              <button className="mt-4 bg-red-600 text-white py-2 px-6 rounded-md">
-                Know More
-              </button>
-            </div>
-          </div>
-        </section>
       </div>
     );
   }

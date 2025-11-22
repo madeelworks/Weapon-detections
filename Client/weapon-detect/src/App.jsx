@@ -14,6 +14,7 @@ import UserDashboard from "./components/UserDashboard/UserDashboard"; // User da
 import AdminLogin from "./components/AdminLogin/AdminLogin";
 import Users from "./components/Users/Users";
 import Alerts from "./components/Alerts/Alerts";
+import AdminAlerts from "./components/Alerts/AdminAlerts";
 import EditProfile from "./components/EditProfile/EditProfile";
 import UserDash from "./components/UserDash/UserDash";
 import Streaming from "./components/Streaming/Streaming";
@@ -96,7 +97,7 @@ const AppWrapper = () => {
             element={isAdminLoggedIn ? <Dashboard handleLogout={handleAdminLogout} /> : <Navigate to="/admin/login" replace />}
           >
             <Route path="/dashboard/users" element={<Users />} />
-            <Route path="/dashboard/alerts" element={<Alerts />} />
+            <Route path="/dashboard/alerts" element={<AdminAlerts />} />
             {/* Default Route */}
             <Route path="/dashboard" element={<AdminDashboard />} />
           </Route>

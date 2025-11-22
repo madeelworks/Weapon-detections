@@ -6,6 +6,7 @@ const DetectionSchema = new mongoose.Schema({
   s3_url: { type: String, required: true },
   s3_key: { type: String, required: true },
   userID: { type: String, required: true },
+  location: { type: String },
   isViewed: { type: Boolean, required: true },
   timestamp: { type: Date, default: Date.now },
 });

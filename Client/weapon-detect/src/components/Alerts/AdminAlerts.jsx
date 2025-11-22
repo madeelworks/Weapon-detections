@@ -1,100 +1,60 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
-/**
- * Expected alert shape from API:
- * {
- *   _id: string,
- *   title: string,
- *   description: string,
- *   createdAt: string | Date,
- *   images: string[]   // array of image URLs
- * }
- *
- * Fetch endpoint suggestion (adjust to your backend):
- * GET http://localhost:3001/alerts?userId=<currentUserId>
- */
-
-const Alerts = () => {
+const AdminAlerts = () => {
   const [alerts, setAlerts] = useState([]);
   const [selectedAlertId, setSelectedAlertId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
-  const location = useLocation();
-  const isAdminView = location.pathname.startsWith("/dashboard");
-  const navigate = useNavigate();
-  const [ackLoading, setAckLoading] = useState(false);
-  
+
   useEffect(() => {
-    const fetchAlerts = async () => {
+    const fetchAll = async () => {
       try {
         setLoading(true);
         setErr("");
-        let res;
-        if (isAdminView) {
-          // Admin dashboard view: fetch all detections
-          res = await axios.get("http://localhost:3001/api/detection/all", { withCredentials: true });
-        } else {
-          // User view: fetch user-specific detections
-          const user = await axios.get("http://localhost:3001/user/profile", { withCredentials: true });
-          if (!user || !user.data?._id) throw new Error("User not found");
-          const userID = user.data._id;
-          res = await axios.get(`http://localhost:3001/api/detection/${userID}`, { withCredentials: true });
-        }
-
-        console.log("res", res);
-        setAlerts(res.data.data);
-      
+        const res = await axios.get("http://localhost:3001/api/detection/all", { withCredentials: true });
+        setAlerts(res.data?.data || []);
       } catch (e) {
         setErr("Failed to load alerts. Please try again.");
       } finally {
         setLoading(false);
       }
     };
-
-    fetchAlerts();
-  }, []); 
+    fetchAll();
+  }, []);
 
   const selectedAlert = alerts.find(a => a._id === selectedAlertId);
 
   const acknowledgeAlert = async () => {
     if (!selectedAlertId) return;
     try {
-      setAckLoading(true);
       await axios.put(`http://localhost:3001/api/detection/${selectedAlertId}/acknowledge`, {}, { withCredentials: true });
       setAlerts(prev => prev.map(a => a._id === selectedAlertId ? { ...a, isViewed: true } : a));
-      if (!isAdminView) navigate("/UserDashboard/acknowledge");
     } catch (e) {
       console.error("ack error", e);
-    } finally {
-      setAckLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Page container */}
       <div className="mx-auto max-w-7xl px-4 py-6">
-        {/* Top header row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="bg-white rounded-xl shadow p-4 flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-semibold text-black">Alerts</h1>
-              <p className="text-sm text-gray-500">{isAdminView ? "All alerts across users" : "All alerts for the logged-in user"}</p>
+              <h1 className="text-2xl font-semibold">Alerts</h1>
+              <p className="text-sm text-gray-500">All alerts across users</p>
             </div>
             <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-md border border-blue-100">{alerts.length} total</span>
           </div>
           <div className="bg-white rounded-xl shadow p-4">
-            <h2 className="text-2xl font-semibold text-black">Images</h2>
+            <h2 className="text-2xl font-semibold">Images</h2>
             <p className="text-sm text-gray-500">Preview of selected detection</p>
           </div>
         </div>
 
-        {/* Content row: left = alerts list, right = images panel */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left: Alerts list */}
           <div className="bg-white rounded-xl shadow p-4">
             {loading ? (
               <div className="space-y-3">
@@ -136,27 +96,16 @@ const Alerts = () => {
             )}
           </div>
 
-          {/* Right: Images panel */}
           <div className="bg-white rounded-xl shadow p-4 sticky top-4 self-start">
             {!selectedAlert ? (
               <div className="text-center py-12 text-gray-500">Select an alert to view its image.</div>
             ) : (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold">{selectedAlert.class_name}</h3>
-                    <p className="text-sm text-gray-500">{selectedAlert.user?.firstName} {selectedAlert.user?.lastName} • {selectedAlert.location || "Unknown location"}</p>
-                  </div>
-                  <button onClick={() => setSelectedAlertId(null)} className="px-3 py-2 rounded-md bg-gray-200 text-gray-800 text-sm hover:bg-gray-300">Clear</button>
-                </div>
-                {selectedAlert.s3_url ? (
-                  <img src={selectedAlert.s3_url} alt="detection" className="w-full h-auto max-h-[60vh] object-contain rounded-md border" />
-                ) : (
-                  <div className="text-center py-10 text-gray-500">No image available.</div>
-                )}
-                <div className="flex items-center gap-3">
+              <div className="space-y-3">
+                <img src={selectedAlert.s3_url} alt="detection" className="w-full h-auto max-h-[60vh] object-contain rounded-md border" />
+                <div className="text-xs text-gray-500">Key: {selectedAlert.s3_key}</div>
+                <div className="mt-2 flex items-center gap-3">
                   <a href={selectedAlert.s3_url} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-500">Open Image</a>
-                  <button onClick={acknowledgeAlert} disabled={ackLoading} className={`px-4 py-2 rounded-md text-white text-sm ${selectedAlert.isViewed ? "bg-green-600" : "bg-red-600"} ${ackLoading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"}`}>{selectedAlert.isViewed ? "Acknowledged" : "Acknowledge"}</button>
+                  <button onClick={acknowledgeAlert} className={`px-4 py-2 rounded-md text-white text-sm ${selectedAlert.isViewed ? "bg-green-600 hover:bg-green-500" : "bg-red-600 hover:bg-red-500"}`}>{selectedAlert.isViewed ? "Acknowledged" : "Acknowledge"}</button>
                 </div>
               </div>
             )}
@@ -167,4 +116,4 @@ const Alerts = () => {
   );
 };
 
-export default Alerts;
+export default AdminAlerts;

@@ -191,7 +191,7 @@ const Streaming = () => {
                   <div key={i} className="flex items-center justify-between border rounded-lg p-2">
                     <div className="flex items-center gap-2">
                       <span className="inline-block w-2 h-2 rounded-full bg-red-500" />
-                      <div className="text-sm font-medium">{d.class_name || d.className || 'object'}</div>
+                      <div className="text-sm font-medium text-black">{d.class_name || d.className || 'object'}</div>
                     </div>
                     <div className="text-xs text-gray-600">{(d.confidence ?? d.conf ?? 0).toFixed(2)}</div>
                   </div>

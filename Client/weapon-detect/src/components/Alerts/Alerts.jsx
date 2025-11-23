@@ -26,6 +26,8 @@ const Alerts = () => {
   const isAdminView = location.pathname.startsWith("/dashboard");
   const navigate = useNavigate();
   const [ackLoading, setAckLoading] = useState(false);
+  const [daysFilter, setDaysFilter] = useState("7");
+  const [retry, setRetry] = useState(0);
   
   useEffect(() => {
     const fetchAlerts = async () => {
@@ -48,16 +50,21 @@ const Alerts = () => {
         setAlerts(res.data.data);
       
       } catch (e) {
-        setErr("Failed to load alerts. Please try again.");
+        console.error("alerts load error", e);
+        setErr(e?.response?.data?.error || "Failed to load alerts. Please try again.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchAlerts();
-  }, []); 
+  }, [isAdminView, retry]); 
 
   const selectedAlert = alerts.find(a => a._id === selectedAlertId);
+  const cutoff = daysFilter !== "all" ? moment().subtract(parseInt(daysFilter, 10), "days") : null;
+  const visibleAlerts = isAdminView
+    ? alerts
+    : alerts.filter(a => !a.isViewed && a.timestamp && (cutoff ? moment(a.timestamp).isSameOrAfter(cutoff) : true));
 
   const acknowledgeAlert = async () => {
     if (!selectedAlertId) return;
@@ -82,9 +89,24 @@ const Alerts = () => {
           <div className="bg-white rounded-xl shadow p-4 flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-semibold text-black">Alerts</h1>
-              <p className="text-sm text-gray-500">{isAdminView ? "All alerts across users" : "All alerts for the logged-in user"}</p>
+              <p className="text-sm text-gray-500">{isAdminView ? "All alerts across users" : daysFilter === "all" ? "All unacknowledged alerts" : `Unacknowledged alerts (last ${daysFilter} days)`}</p>
             </div>
-            <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-md border border-blue-100">{alerts.length} total</span>
+            <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-md border border-blue-100">{visibleAlerts.length} total</span>
+            {!isAdminView && (
+              <select
+                value={daysFilter}
+                onChange={(e) => setDaysFilter(e.target.value)}
+                className="ml-3 border border-gray-300 rounded px-2 py-1 text-xs text-gray-600"
+              >
+                <option value="1">1 day</option>
+                <option value="4">4 days</option>
+                <option value="7">7 days</option>
+                <option value="14">14 days</option>
+                <option value="30">30 days</option>
+                <option value="all">All</option>
+              </select>
+            )}
+            <button onClick={() => setRetry(r => r + 1)} className="ml-3 px-3 py-1 rounded border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">Retry</button>
           </div>
           <div className="bg-white rounded-xl shadow p-4">
             <h2 className="text-2xl font-semibold text-black">Images</h2>
@@ -103,12 +125,15 @@ const Alerts = () => {
                 <div className="h-4 bg-gray-200 rounded animate-pulse" />
               </div>
             ) : err ? (
-              <div className="text-center py-8 text-red-600">{err}</div>
-            ) : alerts.length === 0 ? (
+              <div className="text-center py-8">
+                <div className="text-red-600 mb-3">{err}</div>
+                <button onClick={() => setRetry(r => r + 1)} className="px-3 py-2 rounded-md border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">Retry</button>
+              </div>
+            ) : visibleAlerts.length === 0 ? (
               <div className="text-center py-12 text-gray-500">No alerts found.</div>
             ) : (
               <ul className="space-y-3 max-h-[70vh] overflow-y-auto pr-2">
-                {alerts.map((alert) => (
+                {visibleAlerts.map((alert) => (
                   <li key={alert._id} className={`border rounded-lg p-4 transition bg-white ${selectedAlertId === alert._id ? "border-blue-500 ring-1 ring-blue-100" : "border-gray-200 hover:shadow-sm"}`}>
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">

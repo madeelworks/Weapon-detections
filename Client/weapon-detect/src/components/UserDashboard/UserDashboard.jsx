@@ -33,8 +33,8 @@ const UserDashboard = ({ handleLogout }) => {
       try {
         const res = await axios.get("http://localhost:3001/user/profile", { withCredentials: true });
         setUser(res.data || null);
-      } catch (e) {
-        // ignore; fallback UI will show default avatar
+      } catch {
+        console.error("Failed to load profile")
       }
     };
     fetchProfile();

@@ -5,6 +5,9 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');  // Import the auth routes
 const userRoutes = require('./routes/userRoutes');
 const detectionRoutes = require("./routes/detection");
+const reportsRoutes = require('./routes/reports');
+const callsRoutes = require('./routes/calls');
+const camerasRoutes = require('./routes/cameras');
 
 const app = express();
 
@@ -13,10 +16,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Frontend URL (adjust as needed)
-    // methods: 'GET,POST,PUT,DELETE',
-    // allowedHeaders: 'Content-Type, Authorization',
-   credentials: true,   // Allow cookies (including admin token)
+    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    credentials: true,   // Allow cookies (including admin token)
   })
 );
 
@@ -34,6 +35,9 @@ mongoose.connect('mongodb+srv://adeeltechpro_db_user:VDUv4DZ6w4tcIMjs@cluster0.v
 app.use('/auth', authRoutes);  // Register authentication routes
 app.use('/user', userRoutes);  // Register authentication routes
 app.use("/api/detection", detectionRoutes);  // Register authentication routes
+app.use('/api/reports', reportsRoutes);
+app.use('/api/calls', callsRoutes);
+app.use('/api/cameras', camerasRoutes);
 
 // Start the server
 app.listen(3001, () => {

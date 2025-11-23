@@ -15,6 +15,7 @@ import AdminLogin from "./components/AdminLogin/AdminLogin";
 import Users from "./components/Users/Users";
 import Alerts from "./components/Alerts/Alerts";
 import AdminAlerts from "./components/Alerts/AdminAlerts";
+import ConfigureSystem from "./components/AdminDashboard/ConfigureSystem";
 import EditProfile from "./components/EditProfile/EditProfile";
 import UserDash from "./components/UserDash/UserDash";
 import Streaming from "./components/Streaming/Streaming";
@@ -98,6 +99,7 @@ const AppWrapper = () => {
           >
             <Route path="/dashboard/users" element={<Users />} />
             <Route path="/dashboard/alerts" element={<AdminAlerts />} />
+            <Route path="/dashboard/configure" element={<ConfigureSystem />} />
             {/* Default Route */}
             <Route path="/dashboard" element={<AdminDashboard />} />
           </Route>

@@ -103,6 +103,25 @@ const Dashboard = ({ handleLogout }) => {
         </svg>
       ),
     },
+    {
+      title: "Configure System",
+      URL: "/dashboard/configure",
+      icon: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 8v8m-4-4h8M4 6h16M4 18h16"
+          />
+        </svg>
+      ),
+    },
   ];
 
   return (

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const UserDashboard = ({ handleLogout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   
   // Auto-hide sidebar on mobile, show on desktop
   useEffect(() => {
@@ -22,8 +23,6 @@ const UserDashboard = ({ handleLogout }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  const [selectedCamera, setSelectedCamera] = useState(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
   const [activeNav, setActiveNav] = useState("/UserDashboard/UserDash"); // State to track active nav
   const [user, setUser] = useState(null);
 
@@ -33,35 +32,13 @@ const UserDashboard = ({ handleLogout }) => {
       try {
         const res = await axios.get("http://localhost:3001/user/profile", { withCredentials: true });
         setUser(res.data || null);
-      } catch (e) {
-        // ignore; fallback UI will show default avatar
+      } catch {
+        console.error("Failed to load profile")
       }
     };
     fetchProfile();
   }, []);
 
-  // Simulated Camera Data
-  const cameras = [
-    { id: 1, title: "Camera 1", streamUrl: "/src/assets/detection.mp4" },
-    { id: 2, title: "Camera 2", streamUrl: "/src/assets/v8l.mp4" },
-    { id: 3, title: "Camera 3", streamUrl: "/src/assets/v8n.mp4" },
-    { id: 4, title: "Camera 4", streamUrl: "/src/assets/v8s.mp4" },
-  ];
-
-  // Function to handle camera selection
-  const handleCameraClick = (camera) => {
-    setSelectedCamera(camera);
-  };
-
-  // Function to open the dialog
-  const openDialog = () => {
-    setIsDialogOpen(true);
-  };
-
-  // Function to close the dialog
-  const closeDialog = () => {
-    setIsDialogOpen(false);
-  };
 
   const navs = [
     {
@@ -248,7 +225,7 @@ const UserDashboard = ({ handleLogout }) => {
 
               {/* Logout Button */}
               <button
-                onClick={handleLogout}
+                onClick={() => setShowLogoutConfirm(true)}
                 className="text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600"
               >
                 Logout
@@ -302,6 +279,18 @@ const UserDashboard = ({ handleLogout }) => {
             <Outlet />
           </div>
         </div>
+        {showLogoutConfirm && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/50" onClick={() => setShowLogoutConfirm(false)} />
+            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-sm mx-4 p-5">
+              <div className="text-lg font-semibold text-black">Are you sure you want to logout?</div>
+              <div className="mt-4 flex items-center justify-end gap-3">
+                <button onClick={() => setShowLogoutConfirm(false)} className="px-4 py-2 rounded-md bg-gray-200 text-gray-800">Cancel</button>
+                <button onClick={() => { setShowLogoutConfirm(false); handleLogout(); }} className="px-4 py-2 rounded-md bg-red-600 text-white">Logout</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
      </div>

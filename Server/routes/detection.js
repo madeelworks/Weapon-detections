@@ -2,6 +2,32 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 const Detection = require("../models/Detection");
 const UsersModel = require("../models/Users");
+const SibApiV3Sdk = require('sib-api-v3-sdk');
+
+async function sendDetectionEmail(toEmail, className, confidence, s3Url, location) {
+  try {
+    const defaultClient = SibApiV3Sdk.ApiClient.instance;
+    const apiKey = defaultClient.authentications['api-key'];
+    apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
+    if (!apiKey.apiKey) {
+      console.error('Brevo API key missing');
+      return;
+    }
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+    sendSmtpEmail.sender = { email: 'adeel.techpro@gmail.com', name: 'Recon Eye' };
+    sendSmtpEmail.to = [{ email: toEmail }];
+    sendSmtpEmail.subject = 'Weapon detected';
+    sendSmtpEmail.textContent = `Weapon detected: ${className} (${Math.round((confidence || 0) * 100)}%). ${location ? 'Location: ' + location : ''}`;
+    if (s3Url) {
+      sendSmtpEmail.htmlContent = `<p>Weapon detected: <strong>${className}</strong> (${Math.round((confidence || 0) * 100)}%).</p>${location ? `<p>Location: ${location}</p>` : ''}<p><a href="${s3Url}">View image</a></p>`;
+    }
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
+    console.log('Brevo detection email sent to', toEmail);
+  } catch (err) {
+    console.error('Brevo send email error:', err && err.message ? err.message : String(err));
+  }
+}
 
 router.post("/", async (req, res) => {
   try {
@@ -18,6 +44,10 @@ router.post("/", async (req, res) => {
     });
 
     await detection.save();
+    const user = await UsersModel.findById(userID).select('email');
+    if (user && user.email) {
+      sendDetectionEmail(user.email, class_name, confidence, s3_url, detection.location);
+    }
     res.json({ success: true, id: detection._id });
   } catch (err) {
     console.error("Detection save error:", err);

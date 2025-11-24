@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Dashboard = ({ handleLogout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   
   // Auto-hide sidebar on mobile, show on desktop
   useEffect(() => {
@@ -19,8 +20,7 @@ const Dashboard = ({ handleLogout }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  const [selectedCamera, setSelectedCamera] = useState(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
+  
 
   // // Simulated Camera Data
   // const cameras = [
@@ -185,9 +185,8 @@ const Dashboard = ({ handleLogout }) => {
                 </Link>
               ))}
 
-              {/* Logout Button */}
               <button
-                onClick={handleLogout}
+                onClick={() => setShowLogoutConfirm(true)}
                 className="text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600"
               >
                 Logout
@@ -230,6 +229,18 @@ const Dashboard = ({ handleLogout }) => {
             <Outlet />
           </div>
         </div>
+        {showLogoutConfirm && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/50" onClick={() => setShowLogoutConfirm(false)} />
+            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-sm mx-4 p-5">
+              <div className="text-lg font-semibold text-black">Are you sure you want to logout?</div>
+              <div className="mt-4 flex items-center justify-end gap-3">
+                <button onClick={() => setShowLogoutConfirm(false)} className="px-4 py-2 rounded-md bg-gray-200 text-gray-800">Cancel</button>
+                <button onClick={() => { setShowLogoutConfirm(false); handleLogout(); }} className="px-4 py-2 rounded-md bg-red-600 text-white">Logout</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
      </div>

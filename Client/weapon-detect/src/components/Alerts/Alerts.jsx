@@ -3,19 +3,6 @@ import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 
-/**
- * Expected alert shape from API:
- * {
- *   _id: string,
- *   title: string,
- *   description: string,
- *   createdAt: string | Date,
- *   images: string[]   // array of image URLs
- * }
- *
- * Fetch endpoint suggestion (adjust to your backend):
- * GET http://localhost:3001/alerts?userId=<currentUserId>
- */
 
 const Alerts = () => {
   const [alerts, setAlerts] = useState([]);

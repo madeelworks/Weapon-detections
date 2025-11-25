@@ -75,13 +75,14 @@ const AppWrapper = () => {
           {/* Protected User Dashboard with nested routes for EditProfile and Alerts */}
     
 
-              <Route
+          <Route
             path="/UserDashboard"
             element={isLoggedIn ? <UserDashboard handleLogout={handleLogout} /> : <Navigate to="/login" replace />}
           >
             <Route path="/UserDashboard/UserDash" element={<UserDash />} />
             <Route path="/UserDashboard/EditProfile" element={<EditProfile />} />
             <Route path="/UserDashboard/Streaming" element={<Streaming />} />
+            <Route path="/UserDashboard/configure" element={<ConfigureSystem />} />
             <Route path="/UserDashboard/alerts" element={<Alerts />} />
             <Route path="/UserDashboard/acknowledge" element={<Acknowledge />} />
             <Route path="/UserDashboard/history" element={<History />} />
@@ -99,7 +100,6 @@ const AppWrapper = () => {
           >
             <Route path="/dashboard/users" element={<Users />} />
             <Route path="/dashboard/alerts" element={<AdminAlerts />} />
-            <Route path="/dashboard/configure" element={<ConfigureSystem />} />
             {/* Default Route */}
             <Route path="/dashboard" element={<AdminDashboard />} />
           </Route>

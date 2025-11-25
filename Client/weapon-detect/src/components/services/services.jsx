@@ -93,7 +93,7 @@ export class Services extends Component {
     {/* Right Section: Image */}
     <div className="w-full md:w-8/12 lg:w-8/12 flex justify-center order-1 md:order-2 mt-6">
       <img
-        src="/src/assets/work1.jpg"
+        src="/src/assets/Adeel.png"
         alt="React development"
         className="object-contain rounded-xl max-w-xl md:max-w-2xl lg:max-w-2xl"
       />

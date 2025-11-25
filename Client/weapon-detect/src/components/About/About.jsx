@@ -1,5 +1,5 @@
 import React from "react";
-
+import adeel from "../../assets/Adeel1.png"
 export default function About() {
   return (
     <div id="about" className="relative min-h-screen py-16 overflow-hidden">
@@ -86,7 +86,7 @@ export default function About() {
     {/* Right Section: Image */}
     <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center order-1 md:order-2">
       <img
-        src="/src/assets/Adeel1.png" // Replace with your actual image path
+        src={adeel} // Replace with your actual image path
         alt="About Us"
         className="w-full object-cover "
       />

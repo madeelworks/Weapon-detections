@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../../assets/logo.png"
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +9,7 @@ const Header = () => {
       <div className="backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/60">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/src/assets/logo.png" alt="Recon Eye" className="w-10 h-10" />
+            <img src={logo} alt="Recon Eye" className="w-10 h-10" />
             <span className="text-white font-extrabold tracking-wide text-lg">
               Recon <span className="text-red-500">Eye</span>
             </span>

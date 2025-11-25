@@ -1,11 +1,14 @@
 import React from 'react';
+import weapons from "../../assets/weapons-1.png"
+import weapon from "../../assets/weapon.mp4"
+
 
 const Home = () => {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background video + overlay */}
       <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10">
-        <source src="/src/assets/weapon.mp4" type="video/mp4" />
+        <source src={weapon} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 -z-10" />
 
@@ -29,7 +32,7 @@ const Home = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <img src="/src/assets/weapons-1.png" alt="Weapon detection" className="w-full max-w-xl rounded-xl shadow-2xl ring-1 ring-white/10" />
+            <img src={weapons} alt="Weapon detection" className="w-full max-w-xl rounded-xl shadow-2xl ring-1 ring-white/10" />
           </div>
         </div>
       </div>

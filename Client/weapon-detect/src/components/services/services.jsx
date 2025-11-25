@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Artificials from "../../assets/Artificials-1.jpg"
+import Adeel from "../../assets/Adeel.png"
+
+
 
 export class Services extends Component {
   render() {
@@ -12,7 +16,7 @@ export class Services extends Component {
               {/* Left Section: Image */}
               <div className="w-full md:w-6/12 lg:w-6/12 flex justify-center">
                 <img
-                  src="/src/assets/Artificials-1.jpg"
+                  src={Artificials}
                   alt="React development"
                   className="object-contain rounded-xl max-w-xs "
                 />
@@ -93,7 +97,7 @@ export class Services extends Component {
     {/* Right Section: Image */}
     <div className="w-full md:w-8/12 lg:w-8/12 flex justify-center order-1 md:order-2 mt-6">
       <img
-        src="/src/assets/Adeel.png"
+        src={Adeel}
         alt="React development"
         className="object-contain rounded-xl max-w-xl md:max-w-2xl lg:max-w-2xl"
       />

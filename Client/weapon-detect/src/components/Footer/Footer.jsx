@@ -1,4 +1,6 @@
 import React from "react";
+import logo from "../../assets/logo.png"
+
 
 export default function Footer() {
   return (
@@ -10,7 +12,7 @@ export default function Footer() {
           {/* Logo Section */}
           <div className="flex items-center space-x-3 px-6 relative z-10">
             <img
-              src="/src/assets/logo.png"
+              src={logo}
               alt="Logo"
               className="w-36 h-auto"
             />

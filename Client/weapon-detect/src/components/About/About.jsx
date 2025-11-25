@@ -1,5 +1,8 @@
 import React from "react";
 import adeel from "../../assets/Adeel1.png"
+import detection from "../../assets/detection.mp4"
+
+
 export default function About() {
   return (
     <div id="about" className="relative min-h-screen py-16 overflow-hidden">
@@ -17,7 +20,7 @@ export default function About() {
               playsInline
               className="w-full lg:w-256 xl:w-320 h-full object-contain rounded-xl "
             >
-              <source src="/src/assets/detection.mp4" type="video/mp4" />
+              <source src={detection} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

@@ -60,6 +60,15 @@ function History() {
   const pageItems = filtered.slice(startIdx, startIdx + pageSize)
   useEffect(() => { if (page > totalPages) setPage(1) }, [filtered.length, totalPages])
 
+  const formatInPK = (ts) => {
+    try {
+      const d = new Date(ts)
+      return new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Karachi', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }).format(d)
+    } catch {
+      return ''
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-6">
@@ -123,13 +132,12 @@ function History() {
                 </div>
                 <div className="p-3">
                   <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-700 font-semibold">{(alert.confidence * 100).toFixed(1)}%</div>
                     {alert.s3_url && (
                       <a href={alert.s3_url} target="_blank" rel="noreferrer" className="text-xs px-2 py-1 rounded bg-blue-600 text-white">Open</a>
                     )}
                   </div>
                   <div className="mt-2 text-xs text-gray-500">
-                    {alert.timestamp ? moment(alert.timestamp).format("lll") : (alert.createdAt ? moment(alert.createdAt).format("lll") : "—")}
+                    {alert.timestamp ? formatInPK(alert.timestamp) : (alert.createdAt ? formatInPK(alert.createdAt) : "—")}
                   </div>
                   <div className="mt-1 text-sm text-gray-700 truncate">
                     {alert.location || "Unknown location"}

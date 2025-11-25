@@ -41,6 +41,15 @@ const AdminAlerts = () => {
 
   const selectedAlert = alerts.find(a => a._id === selectedAlertId);
 
+  const formatInPK = (ts) => {
+    try {
+      const d = new Date(ts);
+      return new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Karachi", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }).format(d);
+    } catch {
+      return "";
+    }
+  };
+
   const acknowledgeAlert = async () => {
     if (!selectedAlertId) return;
     try {
@@ -143,7 +152,6 @@ const AdminAlerts = () => {
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-semibold px-2 py-1 rounded bg-gray-900/80 text-white">{alert.class_name}</span>
                             <span className={`text-xs px-2 py-1 rounded ${alert.isViewed ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>{alert.isViewed ? 'Acknowledged' : 'Unacknowledged'}</span>
-                            <span className="text-xs text-gray-500">{(alert.confidence * 100).toFixed(1)}%</span>
                           </div>
                           <div className="mt-2 text-sm text-gray-700">
                             <span className="font-medium">{alert.user?.firstName} {alert.user?.lastName}</span>
@@ -151,7 +159,7 @@ const AdminAlerts = () => {
                             <span>{alert.location || "Unknown location"}</span>
                           </div>
                           <div className="mt-1 text-xs text-gray-500">
-                            {alert.timestamp ? moment(alert.timestamp).format("lll") : "—"}
+                            {alert.timestamp ? formatInPK(alert.timestamp) : "—"}
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-2">

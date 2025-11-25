@@ -24,7 +24,7 @@ export default function Footer() {
             {/* Resources */}
             <div>
               <ul className="text-gray-300 font-medium">
-                <h2 className="mb-6 text-sm font-semibold text-white uppercase">Home</h2>
+                <h2 className="mb-6 text-sm font-semibold text-white uppercase">Quick Links</h2>
                 <li className="mb-4">
                   <a
                     href="/#home"
@@ -120,7 +120,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Threads
+                    Linkedin
                   </a>
                 </li>
               </ul>

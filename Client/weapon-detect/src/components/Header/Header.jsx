@@ -44,7 +44,7 @@ const Header = () => {
               </a>
             ))}
             <a
-              href="https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en"
+              href="https://drive.google.com/drive/folders/1w6y8kcogsHbO31yKAtaCBdCqB3SrfMhL?usp=drive_link"
               className="ml-2 inline-flex items-center bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold transition"
             >
               Download App

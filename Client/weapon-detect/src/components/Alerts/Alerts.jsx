@@ -66,6 +66,15 @@ const Alerts = () => {
     ? alerts
     : alerts.filter(a => !a.isViewed && a.timestamp && (cutoff ? moment(a.timestamp).isSameOrAfter(cutoff) : true));
 
+  const formatInPK = (ts) => {
+    try {
+      const d = new Date(ts);
+      return new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Karachi", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }).format(d);
+    } catch {
+      return "";
+    }
+  };
+
   const acknowledgeAlert = async () => {
     if (!selectedAlertId) return;
     try {
@@ -139,7 +148,6 @@ const Alerts = () => {
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-semibold px-2 py-1 rounded bg-gray-100 text-gray-700">{alert.class_name}</span>
-                          <span className="text-xs text-gray-500">{(alert.confidence * 100).toFixed(1)}%</span>
                         </div>
                         <div className="mt-2 text-sm text-gray-700">
                           <span className="font-medium">{alert.user?.firstName} {alert.user?.lastName}</span>
@@ -147,7 +155,7 @@ const Alerts = () => {
                           <span>{alert.location || "Unknown location"}</span>
                         </div>
                         <div className="mt-1 text-xs text-gray-500">
-                          {alert.timestamp ? moment(alert.timestamp).format("lll") : "—"} <span className="mx-1">•</span> {alert.timestamp ? moment(alert.timestamp).fromNow() : ""}
+                          {alert.timestamp ? formatInPK(alert.timestamp) : "—"} <span className="mx-1">•</span> {alert.timestamp ? moment(alert.timestamp).fromNow() : ""}
                         </div>
                       </div>
                       <div className="flex flex-col items-end gap-2">

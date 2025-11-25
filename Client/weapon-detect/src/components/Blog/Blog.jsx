@@ -45,7 +45,6 @@ export default function Blog() {
       <div className="mx-auto max-w-7xl">
         <div className="flex items-end justify-between mb-6">
           <h1 className="text-3xl font-extrabold tracking-tight">ReconEye Blog</h1>
-          <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full border border-gray-200">{posts.length} posts</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
@@ -74,7 +73,6 @@ export default function Blog() {
                   >
                     Read More
                   </a>
-                  <span className="text-[10px] text-gray-500">Medium</span>
                 </div>
               </div>
             </div>

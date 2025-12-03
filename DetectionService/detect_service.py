@@ -8,7 +8,7 @@ import os
 app = FastAPI()
 
 # Load the YOLOv8 model
-model = YOLO('yolov8s.pt')
+model = YOLO('bests.pt')
 
 @app.post('/detect')
 async def detect_weapon(file: UploadFile = File(...)):

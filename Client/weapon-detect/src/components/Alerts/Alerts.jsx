@@ -80,6 +80,23 @@ const Alerts = () => {
     }
   };
 
+  const deleteAlert = async (id) => {
+    try {
+      await axios.put(`http://localhost:3001/api/detection/hide/${id}`, {}, { withCredentials: true });
+      setAlerts(prev => prev.filter(a => a._id !== id));
+      if (selectedAlertId === id) setSelectedAlertId(null);
+    } catch (e) {
+      console.error("delete error", e);
+      try {
+        await axios.delete(`http://localhost:3001/api/detection/${id}`, { withCredentials: true });
+        setAlerts(prev => prev.filter(a => a._id !== id));
+        if (selectedAlertId === id) setSelectedAlertId(null);
+      } catch (err2) {
+        console.error("delete fallback error", err2);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Page container */}
@@ -153,6 +170,9 @@ const Alerts = () => {
                       <div className="flex flex-col items-end gap-2">
                         <Link to={alert.s3_url} target="_blank" className="px-3 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-500 shadow">View Image</Link>
                         <button onClick={() => setSelectedAlertId(alert._id)} className="px-3 py-2 rounded-md bg-gray-100 text-gray-800 text-sm hover:bg-gray-200">Preview</button>
+                        {!isAdminView && (
+                          <button onClick={() => deleteAlert(alert._id)} className="px-3 py-2 rounded-md bg-red-600 text-white text-sm hover:bg-red-500">Delete</button>
+                        )}
                       </div>
                     </div>
                   </li>
@@ -182,6 +202,9 @@ const Alerts = () => {
                 <div className="flex items-center gap-3">
                   <a href={selectedAlert.s3_url} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-500">Open Image</a>
                   <button onClick={acknowledgeAlert} disabled={ackLoading} className={`px-4 py-2 rounded-md text-white text-sm ${selectedAlert.isViewed ? "bg-green-600" : "bg-red-600"} ${ackLoading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"}`}>{selectedAlert.isViewed ? "Acknowledged" : "Acknowledge"}</button>
+                  {!isAdminView && (
+                    <button onClick={() => deleteAlert(selectedAlert._id)} className="px-4 py-2 rounded-md bg-red-600 text-white text-sm hover:bg-red-500">Delete</button>
+                  )}
                 </div>
               </div>
             )}

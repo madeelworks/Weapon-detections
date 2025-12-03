@@ -6,7 +6,7 @@ import { Line, Doughnut } from 'react-chartjs-2';
 
 const AdminDashboard = () => {
   const [detections, setDetections] = useState([]);
-  const [kpis, setKpis] = useState({ totalDetections: 0, guns: 0, heavy: 0, knives: 0, other: 0, last24h: 0, ack: 0 });
+  const [kpis, setKpis] = useState({ totalDetections: 0, grenades: 0, knives: 0, pistols: 0, rifles: 0, other: 0, last24h: 0, ack: 0 });
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState('');
 
@@ -37,19 +37,20 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const now = moment();
-    let guns = 0, heavy = 0, knives = 0, other = 0, total = 0, last24 = 0, ack = 0;
+    let grenades = 0, knives = 0, pistols = 0, rifles = 0, other = 0, total = 0, last24 = 0, ack = 0;
     detections.forEach(d => {
       total += 1;
       if (d.isViewed) ack += 1;
       const name = String(d.class_name || '').toLowerCase();
-      if (name.includes('gun')) guns += 1;
-      else if (name.includes('heavy')) heavy += 1;
+      if (name.includes('grenade')) grenades += 1;
       else if (name.includes('knife')) knives += 1;
+      else if (name.includes('pistol')) pistols += 1;
+      else if (name.includes('rifle')) rifles += 1;
       else other += 1;
       const ts = d.timestamp || d.createdAt || d.updatedAt;
       if (ts && now.diff(moment(ts), 'hours') < 24) last24 += 1;
     });
-    setKpis({ totalDetections: total, guns, heavy, knives, other, last24h: last24, ack });
+    setKpis({ totalDetections: total, grenades, knives, pistols, rifles, other, last24h: last24, ack });
   }, [detections]);
 
   const lineData = useMemo(() => {
@@ -77,8 +78,8 @@ const AdminDashboard = () => {
   }, [detections]);
 
   const doughnutData = useMemo(() => ({
-    labels: ['Guns', 'Heavy Weapon', 'Knives', 'Other'],
-    datasets: [{ label: 'By Class', data: [kpis.guns, kpis.heavy, kpis.knives, kpis.other], backgroundColor: ['#ef4444', '#8b5cf6', '#f59e0b', '#10b981'], borderWidth: 0 }],
+    labels: ['Grenade', 'Knife', 'Pistol', 'Rifle', 'Other'],
+    datasets: [{ label: 'By Class', data: [kpis.grenades, kpis.knives, kpis.pistols, kpis.rifles, kpis.other], backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#8b5cf6', '#10b981'], borderWidth: 0 }],
   }), [kpis]);
 
   return (
@@ -91,16 +92,20 @@ const AdminDashboard = () => {
           <div className="text-3xl font-bold mt-1 text-black">{kpis.totalDetections}</div>
         </div>
         <div className="rounded-xl bg-white/90 backdrop-blur border border-gray-200 p-4 shadow">
-          <div className="text-sm text-gray-500">Guns</div>
-          <div className="text-3xl font-bold mt-1 text-red-600">{kpis.guns}</div>
+          <div className="text-sm text-gray-500">Grenade</div>
+          <div className="text-3xl font-bold mt-1 text-red-600">{kpis.grenades}</div>
         </div>
         <div className="rounded-xl bg-white/90 backdrop-blur border border-gray-200 p-4 shadow">
-          <div className="text-sm text-gray-500">Heavy Weapon</div>
-          <div className="text-3xl font-bold mt-1 text-purple-600">{kpis.heavy}</div>
-        </div>
-        <div className="rounded-xl bg-white/90 backdrop-blur border border-gray-200 p-4 shadow">
-          <div className="text-sm text-gray-500">Knives</div>
+          <div className="text-sm text-gray-500">Knife</div>
           <div className="text-3xl font-bold mt-1 text-amber-600">{kpis.knives}</div>
+        </div>
+        <div className="rounded-xl bg-white/90 backdrop-blur border border-gray-200 p-4 shadow">
+          <div className="text-sm text-gray-500">Pistol</div>
+          <div className="text-3xl font-bold mt-1 text-blue-600">{kpis.pistols}</div>
+        </div>
+        <div className="rounded-xl bg-white/90 backdrop-blur border border-gray-200 p-4 shadow">
+          <div className="text-sm text-gray-500">Rifle</div>
+          <div className="text-3xl font-bold mt-1 text-purple-600">{kpis.rifles}</div>
         </div>
         <div className="rounded-xl bg-white/90 backdrop-blur border border-gray-200 p-4 shadow">
           <div className="text-sm text-gray-500">Last 24h</div>

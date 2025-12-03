@@ -23,8 +23,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = YOLO('yolov8s.pt')
-print(f"[MODEL] Loaded: yolov8s.pt")
+model = YOLO('bests.pt')
+print(f"[MODEL] Loaded: bests.pt")
 print(f"[MODEL] Classes: {model.names}")
 
 

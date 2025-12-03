@@ -1,9 +1,9 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const UsersModel = require('../models/Users');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const UsersModel = require("../models/Users");
 
 // JWT Secret Key (Directly included in the code)
-const JWT_SECRET_KEY = 'adeel';  // You can change this secret key
+const JWT_SECRET_KEY = "adeel"; // You can change this secret key
 
 // Admin Credentials (hardcoded or fetched from the DB in real scenarios)
 const ADMIN_EMAIL = "admin@example.com"; // Set Admin Email
@@ -21,7 +21,7 @@ const registerUser = async (email, password) => {
 
     return newUser; // Return the created user
   } catch (err) {
-    throw new Error('Error hashing password or saving user: ' + err.message);
+    throw new Error("Error hashing password or saving user: " + err.message);
   }
 };
 
@@ -30,31 +30,35 @@ const loginUser = async (email, password, res) => {
     const user = await UsersModel.findOne({ email });
 
     if (!user) {
-      throw new Error('No user found with this email');
+      throw new Error("No user found with this email");
     }
 
     // Compare the password
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
-      throw new Error('Incorrect password');
+      throw new Error("Incorrect password");
     }
 
     // Generate JWT token if credentials are valid
     const token = jwt.sign(
       { userId: user._id, email: user.email },
       JWT_SECRET_KEY, // Secret key included directly in the code
-      { expiresIn: '1h' } // Token expiry time (1 hour)
+      { expiresIn: "1h" } // Token expiry time (1 hour)
     );
 
     // Set token in the cookie
-    res.cookie('Authorization', token, {
-    httpOnly: true,
-  secure: false,
-  sameSite: 'lax', // 'none' only if you need true cross-site (HTTPS required)
-  maxAge: 3600000,
+    res.cookie("Authorization", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax", // 'none' only if you need true cross-site (HTTPS required)
+      maxAge: 3600000,
     });
 
-    return token; // Return success message
+    return {
+      userId: user._id.toString(),
+      name: user.name || "User",
+      email: user.email,
+    };
   } catch (err) {
     throw err;
   }
@@ -94,11 +98,13 @@ const adminLogin = async (email, password, res) => {
 // User Routes
 const userRoutes = (router) => {
   // Register route
-  router.post('/register', async (req, res) => {
+  router.post("/register", async (req, res) => {
     const { email, password } = req.body;
     try {
       const newUser = await registerUser(email, password);
-      res.status(201).json({ message: 'User registered successfully', user: newUser });
+      res
+        .status(201)
+        .json({ message: "User registered successfully", user: newUser });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -118,21 +124,23 @@ const userRoutes = (router) => {
 
 // Admin Routes
 const adminRoutes = (router) => {
-  router.post('/admin/login', async (req, res) => {
+  router.post("/admin/login", async (req, res) => {
     const { email, password } = req.body;
     await adminLogin(email, password, res);
   });
 };
 const getUserProfile = async (userId) => {
   try {
-    const user = await UsersModel.findById(userId).select('firstName lastName email'); // Only select required fields
+    const user = await UsersModel.findById(userId).select(
+      "firstName lastName email"
+    ); // Only select required fields
     if (!user) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
 
     return user; // Send fresh user data
   } catch (err) {
-    throw new Error('Error fetching user profile: ' + err.message);
+    throw new Error("Error fetching user profile: " + err.message);
   }
 };
 
@@ -142,5 +150,5 @@ module.exports = {
   adminRoutes,
   registerUser,
   loginUser,
-  getUserProfile
+  getUserProfile,
 };

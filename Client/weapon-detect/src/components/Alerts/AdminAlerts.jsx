@@ -76,17 +76,32 @@ const AdminAlerts = () => {
   }, [alerts]);
 
   const doughnutData = useMemo(() => {
-    let guns = 0, heavy = 0, knives = 0, other = 0;
+    let grenades = 0, knives = 0, pistols = 0, rifles = 0, other = 0;
     alerts.forEach(d => {
-      const name = String(d.class_name || "").toLowerCase();
-      if (name.includes("gun")) guns += 1;
-      else if (name.includes("heavy")) heavy += 1;
-      else if (name.includes("knife")) knives += 1;
+      let name = d.class_name;
+      if (typeof name === 'number') {
+        if (name === 0) name = 'Grenade';
+        else if (name === 1) name = 'Knife';
+        else if (name === 2) name = 'Pistol';
+        else if (name === 3) name = 'Rifle';
+      }
+      if (typeof name === 'string' && /^\d+$/.test(name)) {
+        const id = parseInt(name, 10);
+        if (id === 0) name = 'Grenade';
+        else if (id === 1) name = 'Knife';
+        else if (id === 2) name = 'Pistol';
+        else if (id === 3) name = 'Rifle';
+      }
+      const lname = String(name || '').toLowerCase();
+      if (lname.includes('grenade')) grenades += 1;
+      else if (lname.includes('knife')) knives += 1;
+      else if (lname.includes('pistol')) pistols += 1;
+      else if (lname.includes('rifle')) rifles += 1;
       else other += 1;
     });
     return {
-      labels: ["Guns", "Heavy Weapon", "Knives", "Other"],
-      datasets: [{ label: "By Class", data: [guns, heavy, knives, other], backgroundColor: ["#ef4444", "#8b5cf6", "#f59e0b", "#10b981"], borderWidth: 0 }],
+      labels: ["Grenade", "Knife", "Pistol", "Rifle", "Other"],
+      datasets: [{ label: "By Class", data: [grenades, knives, pistols, rifles, other], backgroundColor: ["#22c55e", "#f59e0b", "#3b82f6", "#8b5cf6", "#10b981"], borderWidth: 0 }],
     };
   }, [alerts]);
 
